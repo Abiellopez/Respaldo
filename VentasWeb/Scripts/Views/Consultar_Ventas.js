@@ -1,0 +1,203 @@
+﻿
+var tabladata;
+
+
+
+$(document).ready(function () {
+
+    $.datepicker.regional['es'] = {
+        closeText: 'Cerrar',
+        prevText: '< Ant',
+        nextText: 'Sig >',
+        currentText: 'Hoy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        weekHeader: 'Sm',
+        dateFormat: 'dd/mm/yy',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: ''
+    };
+    $.datepicker.setDefaults($.datepicker.regional['es']);
+
+
+    $("#txtFechaInicio").datepicker();
+    $("#txtFechaFin").datepicker();
+    $("#txtFechaInicio").val(ObtenerFecha());
+    $("#txtFechaFin").val(ObtenerFecha());
+
+
+    tabladata = $('#tbVentas').DataTable({
+        "ajax": {
+            "url": $.MisUrls.url._ObtenerVentas + "?codigo=&fechainicio=" + ObtenerFecha() + "&fechafin=" + ObtenerFecha() + "&numerodocumento=&nombres=",
+            "type": "GET",
+            "datatype": "json"
+        },
+        "columns": [
+            {
+                "data": "IdVenta", render: function (data) {
+                    return "<button class='btn btn-success btn-sm ml-2' type='button' onclick='Imprimir(" + data + ")'><i class='far fa-clipboard'></i> Ver</button>"
+                }
+            },
+            { "data": "TipoDocumento" },
+            { "data": "Codigo" },
+            { "data": "FechaRegistro" },
+            {
+                "data": "oCliente", render: function (data) {
+                    return data.NumeroDocumento
+                }
+            },
+            {
+                "data": "oCliente", render: function (data) {
+                    return data.Nombre
+                }
+            },
+            {
+                "data": "TotalCosto", render: function (data) {
+
+                    return "C./ " + (data).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+                }
+            },
+            {
+                "data": "Activo", render: function (data) {
+                    if (data) {
+                        return '<span class="badge badge-success">Activo</span>'
+                    } else {
+                        return '<span class="badge badge-danger">Factura anulada</span>'
+                    }
+                }
+            },
+            {
+                "data": "IdVenta", "render": function (data, type, row, meta) {
+                    return "<button class='btn btn-primary btn-sm' type='button' onclick='abrirPopUpForm(" + JSON.stringify(row) + ")'><i class='fas fa-undo-alt'></i></button>" 
+                },
+                "orderable": false,
+                "searchable": false,
+                "width": "90px"
+            }
+        ],
+        "language": {
+            "url": $.MisUrls.url.Url_datatable_spanish
+        },
+        responsive: true
+    });
+
+
+
+
+});
+
+
+
+//if (row.oEstadoPrestamo.IdEstadoPrestamo != 1) {
+//    return $("<button>").addClass("btn btn-info btn-detalle btn-sm").append(
+//        $("<i>").addClass("far fa-eye")
+//    ).attr({ "data-informacion": JSON.stringify(row) })[0].outerHTML
+//} else {
+//    return $("<button>").addClass("btn btn-primary btn-devolver btn-sm").append(
+//        $("<i>").addClass("fas fa-undo-alt")
+//    ).attr({ "data-informacion": JSON.stringify(row) })[0].outerHTML
+//}
+
+
+
+
+
+
+
+
+
+function buscar() {
+
+    if ($("#txtFechaInicio").val().trim() == "" || $("#txtFechaFin").val().trim() == "") {
+        swal("Mensaje", "Debe ingresar fechas", "warning")
+        return;
+    }
+
+    tabladata.ajax.url($.MisUrls.url._ObtenerVentas + "?" +
+        "codigo=" + $("#txtCodigoVenta").val().trim() +
+        "&fechainicio=" + $("#txtFechaInicio").val().trim() +
+        "&fechafin=" + $("#txtFechaFin").val().trim() +
+        "&numerodocumento=" + $("#txtDocumentoCliente").val() +
+        "&nombres=" + $("#txtNombreCliente").val()).load();
+}
+
+function ObtenerFecha() {
+
+    var d = new Date();
+    var month = d.getMonth() + 1;
+    var day = d.getDate();
+    var output = (('' + day).length < 2 ? '0' : '') + day + '/' + (('' + month).length < 2 ? '0' : '') + month + '/' + d.getFullYear();
+
+    return output;
+}
+
+
+function Imprimir(id) {
+
+    var url = $.MisUrls.url._DocumentoVenta + "?IdVenta=" + id;
+    window.open(url);
+
+}
+
+
+
+function abrirPopUpForm(json) {
+
+    $("#txtid").val(0);
+
+    if (json != null) {
+
+        $("#txtid").val(json.IdVenta);
+        $("#cboEstado").val(json.Activo == true ? 1 : 0);
+
+    } else {
+        $("#cboEstado").val(1);
+    }
+
+    $('#FormModal').modal('show');
+
+}
+
+function Devolucion() {
+
+    if ($("#form").valid()) {
+
+        var request = {
+            objeto: {
+                IdVenta: parseInt($("#txtid").val()),
+                Activo: ($("#cboEstado").val() == "1" ? true : false)
+            }
+        }
+
+        jQuery.ajax({
+            url: $.MisUrls.url._GuardarDevolucion,
+            type: "POST",
+            data: JSON.stringify(request),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+
+                if (data.resultado) {
+                    tabladata.ajax.reload();
+                    $('#FormModal').modal('hide');
+                } else {
+
+                    swal("Mensaje", "No se pudo guardar los cambios", "warning")
+                }
+            },
+            error: function (error) {
+                console.log(error)
+            },
+            beforeSend: function () {
+
+            },
+        });
+
+    }
+
+}
