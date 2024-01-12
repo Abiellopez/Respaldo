@@ -77,9 +77,7 @@ namespace VentasWeb.Controllers
 
                 if (oProducto.IdProducto == 0)
                 {
-                    int id = CD_Producto.Instancia.RegistrarProducto(oProducto);
-                    oProducto.IdProducto = id;
-                    oresponse.resultado = oProducto.IdProducto == 0 ? false : true;
+                    oresponse.resultado = CD_Producto.Instancia.RegistrarProducto(oProducto);
 
                 }
                 else
@@ -164,6 +162,13 @@ namespace VentasWeb.Controllers
         {
             List<ProductoTienda> lista = CD_ProductoTienda.Instancia.ObtenerProductoTienda();
             return Json(new { data = lista }, JsonRequestBehavior.AllowGet);
+        }
+
+        public class Response
+        {
+
+            public bool resultado { get; set; }
+            public string mensaje { get; set; }
         }
     }
 }
