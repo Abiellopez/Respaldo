@@ -13,6 +13,8 @@ namespace CapaModelo
         public int ValorCodigo { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
+        public string RutaImagen { get; set; }
+        public string NombreImagen { get; set; }
         public int IdCategoria { get; set; }
         public Categoria oCategoria { get; set; }
         public int CodigoMarca { get; set; }
@@ -24,6 +26,8 @@ namespace CapaModelo
         public int IdColor { get; set; }
         public Color oColor { get; set; }
         public bool Activo { get; set; }
+        public string base64 { get; set; }
+        public string extension { get; set; }
 
     }
 }

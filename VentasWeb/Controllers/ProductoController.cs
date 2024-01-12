@@ -1,7 +1,10 @@
 ﻿using CapaDatos;
 using CapaModelo;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -49,24 +52,82 @@ namespace VentasWeb.Controllers
             return Json(new { data = oListaProducto }, JsonRequestBehavior.AllowGet);
         }
 
+
+
+
+
         [HttpPost]
-        public JsonResult Guardar(Producto objeto)
+        public JsonResult Guardar(string objeto, HttpPostedFileBase imagenArchivo)
         {
-            bool respuesta = false;
 
-            if (objeto.IdProducto == 0)
+            Response oresponse = new Response() { resultado = true, mensaje = "" };
+
+            try
             {
+                Producto oProducto = new Producto();
+                oProducto = JsonConvert.DeserializeObject<Producto>(objeto);
 
-                respuesta = CD_Producto.Instancia.RegistrarProducto(objeto);
+                string GuardarEnRuta = ConfigurationManager.AppSettings["ruta_imagenes_libros"];
+
+                oProducto.RutaImagen = GuardarEnRuta;
+                oProducto.NombreImagen = "";
+
+                if (!Directory.Exists(GuardarEnRuta))
+                    Directory.CreateDirectory(GuardarEnRuta);
+
+                if (oProducto.IdProducto == 0)
+                {
+                    int id = CD_Producto.Instancia.RegistrarProducto(oProducto);
+                    oProducto.IdProducto = id;
+                    oresponse.resultado = oProducto.IdProducto == 0 ? false : true;
+
+                }
+                else
+                {
+                    oresponse.resultado = CD_Producto.Instancia.ModificarProducto(oProducto);
+                }
+
+
+                if (imagenArchivo != null && oProducto.IdProducto != 0)
+                {
+                    string extension = Path.GetExtension(imagenArchivo.FileName);
+                    GuardarEnRuta = Path.Combine(GuardarEnRuta, oProducto.IdProducto.ToString() + extension);
+                    oProducto.NombreImagen = oProducto.IdProducto.ToString() + extension;
+
+                    imagenArchivo.SaveAs(GuardarEnRuta);
+
+                    oresponse.resultado = CD_Producto.Instancia.ActualizarRutaImagen(oProducto);
+                }
+
             }
-            else
+            catch (Exception e)
             {
-                respuesta = CD_Producto.Instancia.ModificarProducto(objeto);
+                oresponse.resultado = false;
+                oresponse.mensaje = e.Message;
             }
 
-
-            return Json(new { resultado = respuesta }, JsonRequestBehavior.AllowGet);
+            return Json(oresponse, JsonRequestBehavior.AllowGet);
         }
+
+
+        //[HttpPost]
+        //public JsonResult Guardar(Producto objeto)
+        //{
+        //    bool respuesta = false;
+
+        //    if (objeto.IdProducto == 0)
+        //    {
+
+        //        respuesta = CD_Producto.Instancia.RegistrarProducto(objeto);
+        //    }
+        //    else
+        //    {
+        //        respuesta = CD_Producto.Instancia.ModificarProducto(objeto);
+        //    }
+
+
+        //    return Json(new { resultado = respuesta }, JsonRequestBehavior.AllowGet);
+        //}
 
         [HttpGet]
         public JsonResult Eliminar(int id = 0)

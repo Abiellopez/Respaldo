@@ -52,6 +52,8 @@ namespace CapaDatos
                             ValorCodigo = Convert.ToInt32(dr["ValorCodigo"].ToString()),
                             Nombre = dr["Nombre"].ToString(),
                             Descripcion = dr["DescripcionProducto"].ToString(),
+                            RutaImagen = dr["RutaImagem"].ToString(),
+                            NombreImagen = dr["NombreImagen"].ToString(),
                             IdCategoria = Convert.ToInt32(dr["IdCategoria"].ToString()),
                             oCategoria = new Categoria() { Descripcion = dr["DescripcionCategoria"].ToString() },
                             CodigoMarca = Convert.ToInt32(dr["CodigoMarca"].ToString()),
@@ -88,6 +90,8 @@ namespace CapaDatos
                     SqlCommand cmd = new SqlCommand("usp_RegistrarProducto", oConexion);
                     cmd.Parameters.AddWithValue("Nombre", oProducto.Nombre);
                     cmd.Parameters.AddWithValue("Descripcion", oProducto.Descripcion);
+                    cmd.Parameters.AddWithValue("ruta", oProducto.RutaImagen);
+                    cmd.Parameters.AddWithValue("imagen", oProducto.NombreImagen);
                     cmd.Parameters.AddWithValue("IdCategoria", oProducto.IdCategoria);
                     cmd.Parameters.AddWithValue("IdMarca", oProducto.CodigoMarca);
                     cmd.Parameters.AddWithValue("IdEstilo", oProducto.CodigoEstilo);
@@ -150,6 +154,35 @@ namespace CapaDatos
             return respuesta;
 
         }
+
+
+        public bool ActualizarRutaImagen(Producto objeto)
+        {
+            bool respuesta = true;
+            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("sp_actualizarRutaImagen", oConexion);
+                    cmd.Parameters.AddWithValue("IdProducto", objeto.IdProducto);
+                    cmd.Parameters.AddWithValue("NombreImagen", objeto.NombreImagen);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    oConexion.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    respuesta = false;
+                }
+            }
+            return respuesta;
+        }
+
+
+
+
+
+
 
         public bool EliminarProducto(int IdProducto)
         {
