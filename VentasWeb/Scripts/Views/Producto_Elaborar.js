@@ -298,10 +298,9 @@ function abrirPopUpForm(json) {
 
 function Guardar() {
 
-    if ($("#form").valid()) {
         var ImagenSeleccionada = ($("#fileProducto"))[0].files[0];
-        var request = {
-            objeto: {
+      
+            var objeto = {
                 IdProducto: parseInt($("#txtid").val()),
                 Nombre: $("#txtNombre").val(),
                 Descripcion: $("#txtDescripcion").val(),
@@ -312,7 +311,7 @@ function Guardar() {
                 IdColor: $("#cboColor").val(),
                 Activo: ($("#cboEstado").val() == "1" ? true : false)
             }
-        }
+        
         var request = new FormData();
         request.append("imagenArchivo", ImagenSeleccionada);
         request.append("objeto", JSON.stringify(objeto));
@@ -344,7 +343,7 @@ function Guardar() {
 
     }
 
-}
+
 
 
 function eliminar($id) {

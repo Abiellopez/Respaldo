@@ -178,7 +178,7 @@ namespace CapaDatos
                     oConexion.Open();
                     cmd.ExecuteNonQuery();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     respuesta = false;
                 }
