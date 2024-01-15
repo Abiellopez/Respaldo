@@ -75,9 +75,12 @@ namespace VentasWeb.Controllers
                 if (!Directory.Exists(GuardarEnRuta))
                     Directory.CreateDirectory(GuardarEnRuta);
 
+
                 if (oProducto.IdProducto == 0)
                 {
-                    oresponse.resultado = CD_Producto.Instancia.RegistrarProducto(oProducto);
+                    int id = CD_Producto.Instancia.RegistrarProducto(oProducto);
+                    oProducto.IdProducto = id;
+                    oresponse.resultado = oProducto.IdProducto == 0 ? false : true;
 
                 }
                 else

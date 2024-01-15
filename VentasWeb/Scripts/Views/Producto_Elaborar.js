@@ -1,7 +1,31 @@
 ﻿
 var tablaProducto;
+
+
+
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#imgProducto')
+                .attr('src', e.target.result)
+                .width(190)
+                .height(192);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+
+
 $(document).ready(function () {
     activarMenu("Mantenedor");
+
+
+
 
 
     ////validamos el formulario
@@ -212,7 +236,7 @@ $(document).ready(function () {
             },
             {
                 "data": "IdProducto", "render": function (data, type, row, meta) {
-                    return "<button class='btn btn-primary btn-sm' type='button' onclick='abrirPopUpForm(" + JSON.stringify(row) + ")'><i class='fas fa-pen'></i></button>" +
+                    return "<button class='btn btn-primary btn-editar btn-sm' type='button' onclick='abrirPopUpForm(" + JSON.stringify(row) + ")'><i class='fas fa-pen'></i></button>" +
                         "<button class='btn btn-danger btn-sm ml-2' type='button' onclick='eliminar(" + data + ")'><i class='fa fa-trash'></i></button>"
                 },
                 "orderable": false,
@@ -231,6 +255,16 @@ $(document).ready(function () {
 })
 
 
+
+
+$(document).on('click', '.btn-editar', function (event) {
+    var json = $(this).data("informacion")
+
+    abrirPopUpForm(json)
+});
+
+
+
 function abrirPopUpForm(json) {
 
     $("#txtid").val(0);
@@ -238,14 +272,13 @@ function abrirPopUpForm(json) {
     if (json != null) {
 
         $("#txtid").val(json.IdProducto);
-        
+        $("#imgProducto").attr({ "src": "data:image/" + json.extension + ";base64," + json.base64 });
         $("#txtCodigo").val(json.Codigo);
         $("#txtNombre").val(json.Nombre);
         $("#txtDescripcion").val(json.Descripcion);
         $("#cboCategoria").val(json.IdCategoria);
         $("#cboMarca").val(json.CodigoMarca);
-        $("#cboEstilo").val(json.CodigoEstilo);
-      
+        $("#cboEstilo").val(json.CodigoEstilo);    
         $("#cboTalla").val(json.IdTalla);
         $("#cboColor").val(json.IdColor);
         $("#cboEstado").val(json.Activo == true ? 1 : 0);
@@ -254,13 +287,13 @@ function abrirPopUpForm(json) {
     } else {
 
         $("#txtCodigo").val("AUTOGENERADO");
+        $("#imgProducto").attr({ "src": "" });
         $("#txtCodigo").prop("disabled", true)
         $("#txtNombre").val("");
         $("#txtDescripcion").val("");
         $("#cboCategoria").val($("#cboCategoria option:first").val());
         $("#cboMarca").val($("#cboMarca option:first").val());
         $("#cboEstilo").val($("#cboEstilo option:first").val());
-
         $("#cboTalla").val($("#cboTalla option:first").val());
         $("#cboColor").val($("#cboColor option:first").val());
         $("#cboEstado").val(1);
@@ -274,7 +307,7 @@ function abrirPopUpForm(json) {
 function Guardar() {
 
     if ($("#form").valid()) {
-
+        var ImagenSeleccionada = ($("#fileProducto"))[0].files[0];
         var request = {
             objeto: {
                 IdProducto: parseInt($("#txtid").val()),
@@ -282,13 +315,16 @@ function Guardar() {
                 Descripcion: $("#txtDescripcion").val(),
                 IdCategoria: $("#cboCategoria").val(),
                 CodigoMarca: $("#cboMarca").val(),
-                CodigoEstilo: $("#cboEstilo").val(),
-       
+                CodigoEstilo: $("#cboEstilo").val(),  
                 IdTalla: $("#cboTalla").val(),
                 IdColor: $("#cboColor").val(),
                 Activo: ($("#cboEstado").val() == "1" ? true : false)
             }
         }
+        var request = new FormData();
+        request.append("imagenArchivo", ImagenSeleccionada);
+        request.append("objeto", JSON.stringify(objeto));
+
 
         jQuery.ajax({
             url: $.MisUrls.url._GuardarProducto,
@@ -360,3 +396,19 @@ function eliminar($id) {
         });
 
 }
+
+
+$.fn.inputFilter = function (inputFilter) {
+    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function () {
+        if (inputFilter(this.value)) {
+            this.oldValue = this.value;
+            this.oldSelectionStart = this.selectionStart;
+            this.oldSelectionEnd = this.selectionEnd;
+        } else if (this.hasOwnProperty("oldValue")) {
+            this.value = this.oldValue;
+            this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+        } else {
+            this.value = "";
+        }
+    });
+};

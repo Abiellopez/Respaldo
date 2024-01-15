@@ -1,8 +1,10 @@
 ﻿using CapaModelo;
+using ProyectoBiblioteca.Logica;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,9 +53,7 @@ namespace CapaDatos
                             Codigo = dr["Codigo"].ToString(),
                             ValorCodigo = Convert.ToInt32(dr["ValorCodigo"].ToString()),
                             Nombre = dr["Nombre"].ToString(),
-                            Descripcion = dr["DescripcionProducto"].ToString(),
-                            RutaImagen = dr["RutaImagem"].ToString(),
-                            NombreImagen = dr["NombreImagen"].ToString(),
+                            Descripcion = dr["DescripcionProducto"].ToString(),                         
                             IdCategoria = Convert.ToInt32(dr["IdCategoria"].ToString()),
                             oCategoria = new Categoria() { Descripcion = dr["DescripcionCategoria"].ToString() },
                             CodigoMarca = Convert.ToInt32(dr["CodigoMarca"].ToString()),
@@ -64,6 +64,14 @@ namespace CapaDatos
                             oTalla = new Talla() { Nombre = dr["DescripcionTalla"].ToString() },
                             IdColor = Convert.ToInt32(dr["IdColor"].ToString()),
                             oColor = new Color() { Nombre = dr["DescripcionColor"].ToString() },
+
+
+                            RutaImagen = dr["RutaImagen"].ToString(),
+                            NombreImagen = dr["NombreImagen"].ToString(),
+                            base64 = Utilidades.convertirBase64(Path.Combine(dr["RutaImagen"].ToString(), dr["NombreImagen"].ToString())),
+                            extension = Path.GetExtension(dr["NombreImagen"].ToString()).Replace(".", ""),
+
+
                             Activo = Convert.ToBoolean(dr["Activo"].ToString())
                         });
                     }
@@ -80,9 +88,9 @@ namespace CapaDatos
             }
         }
 
-        public bool RegistrarProducto(Producto oProducto)
+        public int RegistrarProducto(Producto oProducto)
         {
-            bool respuesta = true;
+            int respuesta = 0;
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 try
@@ -105,12 +113,12 @@ namespace CapaDatos
 
                     cmd.ExecuteNonQuery();
 
-                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    respuesta = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
 
                 }
                 catch (Exception)
                 {
-                    respuesta = false;
+                    respuesta = 0;
                 }
             }
             return respuesta;
