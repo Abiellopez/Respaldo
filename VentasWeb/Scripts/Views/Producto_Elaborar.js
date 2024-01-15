@@ -236,7 +236,7 @@ $(document).ready(function () {
             },
             {
                 "data": "IdProducto", "render": function (data, type, row, meta) {
-                    return "<button class='btn btn-primary btn-editar btn-sm' type='button' onclick='abrirPopUpForm(" + JSON.stringify(row) + ")'><i class='fas fa-pen'></i></button>" +
+                    return "<button class='btn btn-primary  btn-sm' type='button' onclick='abrirPopUpForm(" + JSON.stringify(row) + ")'><i class='fas fa-pen'></i></button>" +
                         "<button class='btn btn-danger btn-sm ml-2' type='button' onclick='eliminar(" + data + ")'><i class='fa fa-trash'></i></button>"
                 },
                 "orderable": false,
@@ -254,14 +254,6 @@ $(document).ready(function () {
 
 })
 
-
-
-
-$(document).on('click', '.btn-editar', function (event) {
-    var json = $(this).data("informacion")
-
-    abrirPopUpForm(json)
-});
 
 
 
