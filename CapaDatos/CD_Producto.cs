@@ -64,8 +64,6 @@ namespace CapaDatos
                             oTalla = new Talla() { Nombre = dr["DescripcionTalla"].ToString() },
                             IdColor = Convert.ToInt32(dr["IdColor"].ToString()),
                             oColor = new Color() { Nombre = dr["DescripcionColor"].ToString() },
-
-
                             RutaImagen = dr["RutaImagen"].ToString(),
                             NombreImagen = dr["NombreImagen"].ToString(),
                             base64 = Utilidades.convertirBase64(Path.Combine(dr["RutaImagen"].ToString(), dr["NombreImagen"].ToString())),
@@ -106,7 +104,7 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("IdTalla", oProducto.IdTalla);
                     cmd.Parameters.AddWithValue("IdColor", oProducto.IdColor);
                 
-                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     oConexion.Open();

@@ -301,17 +301,17 @@ function Guardar() {
         var ImagenSeleccionada = ($("#fileProducto"))[0].files[0];
       
             var objeto = {
-                IdProducto: parseInt($("#txtid").val()),
+                IdProducto: $("#txtid").val(),
                 Nombre: $("#txtNombre").val(),
                 Descripcion: $("#txtDescripcion").val(),
-                IdCategoria: $("#cboCategoria").val(),
-                CodigoMarca: $("#cboMarca").val(),
-                CodigoEstilo: $("#cboEstilo").val(),  
-                IdTalla: $("#cboTalla").val(),
-                IdColor: $("#cboColor").val(),
-                Activo: ($("#cboEstado").val() == "1" ? true : false)
+                oCategoria: { IdCategoria: $("#cbocategoria option:selected").val() },
+                oMarca: { CodigoMarca: $("#cboMarca").val() },
+                oEstilo: { CodigoEstilo: $("#cboEstilo").val() },  
+                oTalla: { IdTalla: $("#cboTalla").val() },
+                oColor: { IdColor: $("#cboColor").val() },
+                Activo: parseInt($("#cboEstado").val()) == 1 ? true : false
             }
-        
+
         var request = new FormData();
         request.append("imagenArchivo", ImagenSeleccionada);
         request.append("objeto", JSON.stringify(objeto));
@@ -389,17 +389,17 @@ function eliminar($id) {
 }
 
 
-$.fn.inputFilter = function (inputFilter) {
-    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function () {
-        if (inputFilter(this.value)) {
-            this.oldValue = this.value;
-            this.oldSelectionStart = this.selectionStart;
-            this.oldSelectionEnd = this.selectionEnd;
-        } else if (this.hasOwnProperty("oldValue")) {
-            this.value = this.oldValue;
-            this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-        } else {
-            this.value = "";
-        }
-    });
-};
+//$.fn.inputFilter = function (inputFilter) {
+//    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function () {
+//        if (inputFilter(this.value)) {
+//            this.oldValue = this.value;
+//            this.oldSelectionStart = this.selectionStart;
+//            this.oldSelectionEnd = this.selectionEnd;
+//        } else if (this.hasOwnProperty("oldValue")) {
+//            this.value = this.oldValue;
+//            this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+//        } else {
+//            this.value = "";
+//        }
+//    });
+//};

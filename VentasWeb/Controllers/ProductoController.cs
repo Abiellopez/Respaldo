@@ -167,11 +167,12 @@ namespace VentasWeb.Controllers
             return Json(new { data = lista }, JsonRequestBehavior.AllowGet);
         }
 
-        public class Response
-        {
+      
+    }
+    public class Response
+    {
 
-            public bool resultado { get; set; }
-            public string mensaje { get; set; }
-        }
+        public bool resultado { get; set; }
+        public string mensaje { get; set; }
     }
 }
