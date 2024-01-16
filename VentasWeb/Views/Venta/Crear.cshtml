@@ -10,14 +10,14 @@
     <div class="col-sm-12">
         <div class="card border-dark">
             <div class="card-header p-2 bg-dark  text-white">
-                Detalle Venta
+                Venta
                 <button id="btnTerminarGuardarVenta" class="btn btn-warning btn-sm float-right">
                     <i class="fa fa-print" aria-hidden="true"></i> Imprimir y Terminar Venta
                 </button>
             </div>
             <div class="card-body p-2 card-venta">
                 <div class="row">
-                    <div class="col-sm-3">
+                    @*<div class="col-sm-3">
                         <div class="input-group input-group-sm mb-2">
                             <div class="input-group-prepend">
                                 <label class="input-group-text bg-dark  text-white" for="inputGroupSelect01">Tipo Documento</label>
@@ -27,20 +27,40 @@
                                 <option value="Factura">Factura</option>
                             </select>
                         </div>
+                    </div>*@
+                  
+                    <input id="txtIdUsuario" type="hidden" value="0" />
+                    <div class="col-sm-2">
+                        <div class="form-group mb-0">
+                            <label for="txtRucProveedor" class="col-form-label col-form-label-sm">Nombre:</label>
+                            <label class="form-control form-control-sm model mb-1" readonly id="lblempleadonombre"></label>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group mb-0">
+                            <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Apellido:</label>
+                            <label class="form-control form-control-sm model mb-1" readonly id="lblempleadoapellido"></label>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group mb-0">
+                            <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Correo:</label>
+                            <label class="form-control form-control-sm model mb-1" readonly id="lblempleadocorreo"></label>
+                        </div>
                     </div>
 
-                        <div class="col-sm-3">
-                            <div class="input-group input-group-sm mb-2">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text bg-dark  text-white" for="inputGroupSelect01">Fecha de Venta</label>
-                                </div>
-                                <input id="txtfechaventa" readonly type="text" class="form-control">
+                    <div class="col-sm-3">
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text bg-dark  text-white" for="inputGroupSelect01">Fecha de Venta</label>
                             </div>
+                            <input id="txtfechaventa" readonly type="text" class="form-control">
                         </div>
+                    </div>
 
 
 
-                    <div class="col-sm-6">
+                    @*<div class="col-sm-6">
                         <div class="card bg-dark text-white border-info">
                             <div class="card-body p-2">
 
@@ -58,30 +78,9 @@
 
                                 </div>
 
-                                <div class="row collapse" id="collapse2">
-                                    <input id="txtIdUsuario" type="hidden" value="0" />
-                                    <div class="col-sm-4">
-                                        <div class="form-group mb-0">
-                                            <label for="txtRucProveedor" class="col-form-label col-form-label-sm">Nombre:</label>
-                                            <label class="form-control form-control-sm model mb-1" readonly id="lblempleadonombre"></label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group mb-0">
-                                            <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Apellido:</label>
-                                            <label class="form-control form-control-sm model mb-1" readonly id="lblempleadoapellido"></label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group mb-0">
-                                            <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Correo:</label>
-                                            <label class="form-control form-control-sm model mb-1" readonly id="lblempleadocorreo"></label>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
 
                 <div class="row mt-2">
@@ -90,7 +89,7 @@
                             <div class="card-body p-2">
                                 <h6 class="card-title mb-1 text-info">Detalle cliente</h6>
                                 <div class="row align-items-end">
-                                    <div class="col-sm-3">
+                                    @*<div class="col-sm-3">
                                         <div class="form-group mb-0">
                                             <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Tipo Documento:</label>
                                             <select class="form-control form-control-sm model" id="cboclientetipodocumento" name="Rol">
@@ -99,17 +98,17 @@
                                                 <option value="RUC">RUC</option>
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-3">
+                                    </div>*@
+                                    <div class="col-sm-4">
                                         <div class="form-group mb-0">
-                                            <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Datos: <span class="required">*</span> </label>
-                                            <input type="text" class="form-control form-control-sm model" id="txtclientedocumento" name="RazonSocial" autocomplete="off">
+                                            <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Cedula: <span class="required">*</span> </label>
+                                            <input type="text" class="form-control form-control-sm model" readonly id ="txtclientedocumento" name="RazonSocial" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group mb-0">
                                             <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Nombres: <span class="required">*</span></label>
-                                            <input type="text" class="form-control form-control-sm model" id="txtclientenombres" name="RazonSocial" autocomplete="off">
+                                            <input type="text" class="form-control form-control-sm model" readonly id ="txtclientenombres" name="RazonSocial" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
@@ -119,16 +118,16 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div class="form-group mb-0">
                                             <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Direccion:</label>
-                                            <input type="text" class="form-control form-control-sm model" id="txtclientedireccion" name="clientedireccion" autocomplete="off">
+                                            <input type="text" class="form-control form-control-sm model" readonly id ="txtclientedireccion" name="clientedireccion" autocomplete="off">
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div class="form-group mb-0">
                                             <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Telefono:</label>
-                                            <input type="text" class="form-control form-control-sm model" id="txtclientetelefono" name="RazonSocial" autocomplete="off">
+                                            <input type="text" class="form-control form-control-sm model" readonly id ="txtclientetelefono" name="RazonSocial" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
@@ -138,7 +137,7 @@
                     <div class="col-sm-6">
                         <div class="card border-info">
                             <div class="card-body p-2">
-                                <h6 class="card-title mb-1 text-info">Detalle Producto</h6>
+                                <h6 class="card-title mb-1 text-info">Detalle productos</h6>
                                 <div class="row align-items-end">
                                     <input id="txtIdProducto" type="hidden" value="0" />
                                     <div class="col-sm-3">
@@ -218,7 +217,7 @@
 
                 <hr />
                 <div class="row">
-                    <div class="col-sm-12"><h6 class="text-info">Detalle Productos</h6></div>
+                    <div class="col-sm-12"><h6 class="text-info">Detalle Venta</h6></div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-sm-12">

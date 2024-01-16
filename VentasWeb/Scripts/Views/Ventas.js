@@ -486,10 +486,10 @@ $('#btnTerminarGuardarVenta').on('click', function () {
 
             if (data.estado) {
                 //DOCUMENTO
-                $("#cboventatipodocumento").val("Boleta");
+                $("#cboventatipodocumento").val("Factura");
 
                 //CLIENTE
-                $("#cboclientetipodocumento").val("DNI");
+                $("#cboclientetipodocumento").val("DUI");
                 $("#txtclientedocumento").val("");
                 $("#txtclientenombres").val("");
                 $("#txtclientedireccion").val("");

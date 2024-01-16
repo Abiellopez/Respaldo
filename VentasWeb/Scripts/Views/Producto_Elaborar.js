@@ -31,10 +31,12 @@ $(document).ready(function () {
     ////validamos el formulario
     $("#form").validate({
         rules: {
+          /*  base64: "required",*/
             Nombre: "required",
             Descripcion: "required"
         },
         messages: {
+           /* base64: "(*)",*/
             Nombre: "(*)",
             Descripcion: "(*)"
 
@@ -238,6 +240,18 @@ $(document).ready(function () {
                 "data": "IdProducto", "render": function (data, type, row, meta) {
                     return "<button class='btn btn-primary  btn-sm' type='button' onclick='abrirPopUpForm(" + JSON.stringify(row) + ")'><i class='fas fa-pen'></i></button>" +
                         "<button class='btn btn-danger btn-sm ml-2' type='button' onclick='eliminar(" + data + ")'><i class='fa fa-trash'></i></button>"
+
+
+                    //return $("<button>").addClass("btn btn-primary btn-editar btn-sm").append(
+                    //    $("<i>").addClass("fas fa-pen")
+                    //).attr({ "data-informacion": JSON.stringify(row) })[0].outerHTML
+                    //    +
+                    //    $("<button>").addClass("btn btn-danger btn-eliminar btn-sm ml-2").append(
+                    //        $("<i>").addClass("fas fa-trash")
+                    //    ).attr({ "data-informacion": JSON.stringify(row) })[0].outerHTML;
+
+
+
                 },
                 "orderable": false,
                 "searchable": false,
@@ -256,6 +270,11 @@ $(document).ready(function () {
 
 
 
+//$(document).on('click', '.btn-editar', function (event) {
+//    var json = $(this).data("informacion")
+
+//    abrirPopUpForm(json)
+//});
 
 function abrirPopUpForm(json) {
 
@@ -294,6 +313,10 @@ function abrirPopUpForm(json) {
     $('#FormModal').modal('show');
 
 }
+
+
+
+
 
 
 function Guardar() {
@@ -344,8 +367,6 @@ function Guardar() {
         });
 
     }
-
-
 
 
 function eliminar($id) {

@@ -100,6 +100,8 @@ namespace VentasWeb.Controllers
                     oresponse.resultado = CD_Producto.Instancia.ActualizarRutaImagen(oProducto);
                 }
 
+
+
             }
             catch (Exception e)
             {
