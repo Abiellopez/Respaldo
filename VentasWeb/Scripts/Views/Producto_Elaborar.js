@@ -305,10 +305,10 @@ function Guardar() {
                 Nombre: $("#txtNombre").val(),
                 Descripcion: $("#txtDescripcion").val(),
                 oCategoria: { IdCategoria: $("#cbocategoria option:selected").val() },
-                oMarca: { CodigoMarca: $("#cboMarca").val() },
-                oEstilo: { CodigoEstilo: $("#cboEstilo").val() },  
-                oTalla: { IdTalla: $("#cboTalla").val() },
-                oColor: { IdColor: $("#cboColor").val() },
+                oMarca: { CodigoMarca: $("#cboMarca option:selected").val() },
+                oEstilo: { CodigoEstilo: $("#cboEstilo option:selected").val() },  
+                oTalla: { IdTalla: $("#cboTalla option:selected").val() },
+                oColor: { IdColor: $("#cboColor option:selected").val() },
                 Activo: parseInt($("#cboEstado").val()) == 1 ? true : false
             }
 
@@ -320,9 +320,11 @@ function Guardar() {
         jQuery.ajax({
             url: $.MisUrls.url._GuardarProducto,
             type: "POST",
-            data: JSON.stringify(request),
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
+            data: request,
+           
+            processData: false,
+            contentType: false,
+         /*   contentType: "application/json; charset=utf-8",*/
             success: function (data) {
 
                 if (data.resultado) {
@@ -389,17 +391,17 @@ function eliminar($id) {
 }
 
 
-//$.fn.inputFilter = function (inputFilter) {
-//    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function () {
-//        if (inputFilter(this.value)) {
-//            this.oldValue = this.value;
-//            this.oldSelectionStart = this.selectionStart;
-//            this.oldSelectionEnd = this.selectionEnd;
-//        } else if (this.hasOwnProperty("oldValue")) {
-//            this.value = this.oldValue;
-//            this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-//        } else {
-//            this.value = "";
-//        }
-//    });
-//};
+$.fn.inputFilter = function (inputFilter) {
+    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function () {
+        if (inputFilter(this.value)) {
+            this.oldValue = this.value;
+            this.oldSelectionStart = this.selectionStart;
+            this.oldSelectionEnd = this.selectionEnd;
+        } else if (this.hasOwnProperty("oldValue")) {
+            this.value = this.oldValue;
+            this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+        } else {
+            this.value = "";
+        }
+    });
+};

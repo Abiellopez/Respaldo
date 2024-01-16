@@ -107,7 +107,7 @@ function abrirPopUpForm(json) {
         $("#txtNombres").val(json.Nombres);
         $("#txtApellidos").val(json.Apellidos);
         $("#txtCorreo").val(json.Correo);
-        $("#txtClave").val(json.Clave);
+        $("#txtClave").val("");
         $("#cboRol").val(json.IdRol);
         $("#cboEstado").val(json.Activo == true ? 1 : 0);
         $("#txtClave").prop("disabled", false);

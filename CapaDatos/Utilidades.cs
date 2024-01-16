@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 
-namespace ProyectoBiblioteca.Logica
+namespace Utilidad
 {
     public class Utilidades
     {

@@ -1,13 +1,15 @@
 ﻿using CapaModelo;
-using ProyectoBiblioteca.Logica;
 using System;
+using Utilidad;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Web;
 using System.Threading.Tasks;
+
 
 namespace CapaDatos
 {
@@ -114,7 +116,7 @@ namespace CapaDatos
                     respuesta = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     respuesta = 0;
                 }
@@ -150,7 +152,7 @@ namespace CapaDatos
                     respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     respuesta = false;
                 }
