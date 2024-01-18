@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 
-namespace Utilidad
+namespace CapaDatos
 {
     public class Utilidades
     {

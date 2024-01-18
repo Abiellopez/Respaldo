@@ -78,9 +78,7 @@ namespace VentasWeb.Controllers
 
                 if (oProducto.IdProducto == 0)
                 {
-                    int id = CD_Producto.Instancia.RegistrarProducto(oProducto);
-                    oProducto.IdProducto = id;
-                    oresponse.resultado = oProducto.IdProducto == 0 ? false : true;
+                    oresponse.resultado = CD_Producto.Instancia.RegistrarProducto(oProducto);
 
                 }
                 else
@@ -99,6 +97,7 @@ namespace VentasWeb.Controllers
 
                     oresponse.resultado = CD_Producto.Instancia.ActualizarRutaImagen(oProducto);
                 }
+
 
 
 

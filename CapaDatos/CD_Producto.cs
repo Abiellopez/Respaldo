@@ -88,37 +88,37 @@ namespace CapaDatos
             }
         }
 
-        public int RegistrarProducto(Producto oProducto)
+        public bool RegistrarProducto(Producto oProducto)
         {
-            int respuesta = 0;
+            bool respuesta = true;
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 try
                 {
                     SqlCommand cmd = new SqlCommand("usp_RegistrarProducto", oConexion);
                     cmd.Parameters.AddWithValue("Nombre", oProducto.Nombre);
-                    cmd.Parameters.AddWithValue("Descripcion", oProducto.Descripcion);
-                    cmd.Parameters.AddWithValue("ruta", oProducto.RutaImagen);
-                    cmd.Parameters.AddWithValue("imagen", oProducto.NombreImagen);
+                    cmd.Parameters.AddWithValue("Descripcion", oProducto.Descripcion);              
                     cmd.Parameters.AddWithValue("IdCategoria", oProducto.IdCategoria);
                     cmd.Parameters.AddWithValue("IdMarca", oProducto.CodigoMarca);
                     cmd.Parameters.AddWithValue("IdEstilo", oProducto.CodigoEstilo);
                     cmd.Parameters.AddWithValue("IdTalla", oProducto.IdTalla);
                     cmd.Parameters.AddWithValue("IdColor", oProducto.IdColor);
-                
-                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.AddWithValue("ruta", oProducto.RutaImagen);
+                    cmd.Parameters.AddWithValue("imagen", oProducto.NombreImagen);
+
+                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     oConexion.Open();
 
                     cmd.ExecuteNonQuery();
 
-                    respuesta = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
+                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
 
                 }
                 catch (Exception)
                 {
-                    respuesta = 0;
+                    respuesta = false;
                 }
             }
             return respuesta;
