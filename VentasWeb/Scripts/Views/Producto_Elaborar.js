@@ -327,12 +327,12 @@ function Guardar() {
                 IdProducto: $("#txtid").val(),
                 Nombre: $("#txtNombre").val(),
                 Descripcion: $("#txtDescripcion").val(),
-                oCategoria: { IdCategoria: $("#cbocategoria option:selected").val() },
-                oMarca: { CodigoMarca: $("#cboMarca option:selected").val() },
-                oEstilo: { CodigoEstilo: $("#cboEstilo option:selected").val() },  
-                oTalla: { IdTalla: $("#cboTalla option:selected").val() },
-                oColor: { IdColor: $("#cboColor option:selected").val() },
-                Activo: parseInt($("#cboEstado").val()) == 1 ? true : false
+                oCategoria: { IdCategoria: $("#cbocategoria").val() },
+                oMarca: { CodigoMarca: $("#cboMarca").val() },
+                oEstilo: { CodigoEstilo: $("#cboEstilo").val() },  
+                oTalla: { IdTalla: $("#cboTalla").val() },
+                oColor: { IdColor: $("#cboColor").val() },
+                Activo: ($("#cboEstado").val() == "1" ? true : false)
             }
 
         var request = new FormData();

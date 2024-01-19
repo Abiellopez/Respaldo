@@ -46,7 +46,7 @@ $(document).ready(function () {
         "columns": [
             {
                 "data": "IdProductoBodega", "render": function (data, type, row, meta) {
-                    return "<button class='btn btn-sm btn-primary ml-2' type='button' onclick='productoSelect(" + JSON.stringify(row) + ")'><i class='fas fa-check'></i></button>"
+                    return "<button class='btn btn-sm btn-warning ml-2' type='button' onclick='productoSelect(" + JSON.stringify(row) + ")'>Add</button>"
                 },
                 "orderable": false,
                 "searchable": false,
@@ -102,7 +102,7 @@ $(document).ready(function () {
         "columns": [
             {
                 "data": "IdCliente", "render": function (data, type, row, meta) {
-                    return "<button class='btn btn-sm btn-primary ml-2' type='button' onclick='clienteSelect(" + JSON.stringify(row) + ")'><i class='fas fa-check'></i></button>"
+                    return "<button class='btn btn-sm btn-warning ml-2' type='button' onclick='clienteSelect(" + JSON.stringify(row) + ")'>Add</button>"
                 },
                 "orderable": false,
                 "searchable": false,
@@ -175,9 +175,9 @@ function productoSelect(json) {
     $("#txtproductocodigo").val(json.oProducto.Codigo);
     $("#txtproductonombre").val(json.oProducto.Nombre);
     $("#txtproductodescripcion").val(json.oProducto.Descripcion);
-    $("#txtMarcanombre").val(json.oMarca.Nombre);
-    $("#txtTallanombre").val(json.oTalla.Nombre);
-    $("#txtColornombre").val(json.oColor.Nombre);
+    //$("#txtMarcanombre").val(json.oMarca.Nombre);
+    //$("#txtTallanombre").val(json.oTalla.Nombre);
+    //$("#txtColornombre").val(json.oColor.Nombre);
     $("#txtproductostock").val(json.Stock);
     $("#txtproductoprecio").val(json.PrecioUnidadVenta);
     $("#txtproductocantidad").val("0");
@@ -217,9 +217,9 @@ $("#txtproductocodigo").on('keypress', function (e) {
                             $("#txtproductocodigo").val(item.oProducto.Codigo);
                             $("#txtproductonombre").val(item.oProducto.Nombre);
                             $("#txtproductodescripcion").val(item.oProducto.Descripcion);
-                            $("#txtMarcanombre").val(item.oMarca.Nombre);
-                            $("#txtTallanombre").val(item.oTalla.Nombre);
-                            $("#txtColornombre").val(item.oColor.Nombre);
+                            //$("#txtMarcanombre").val(item.oMarca.Nombre);
+                            //$("#txtTallanombre").val(item.oTalla.Nombre);
+                            //$("#txtColornombre").val(item.oColor.Nombre);
                             $("#txtproductostock").val(item.Stock);
                             $("#txtproductoprecio").val(item.PrecioUnidadVenta);
                             encontrado = true;
@@ -233,9 +233,9 @@ $("#txtproductocodigo").on('keypress', function (e) {
                         $("#txtproductocodigo").val("");
                         $("#txtproductonombre").val("");
                         $("#txtproductodescripcion").val("");
-                        $("#txtMarcanombre").val("");
-                        $("#txtTallanombre").val("");
-                        $("#txtColornombre").val("");
+             //$("#txtMarcanombre").val("");
+             //           $("#txtTallanombre").val("");
+             //           $("#txtColornombre").val("");           
                         $("#txtproductostock").val("");
                         $("#txtproductoprecio").val("");
                         $("#txtproductocantidad").val("0");
@@ -313,9 +313,9 @@ $('#btnAgregar').on('click', function () {
                     .data("cantidadproducto", parseInt($("#txtproductocantidad").val()))
                     .data("nombre", String($("#txtproductonombre").val()))
                     .data("descripcion", String($("#txtproductodescripcion").val()))
-                    .data("nombremarca", String($("#txtMarcanombre").val()))
-                    .data("nombretalla", String($("#txtTallanombre").val()))
-                    .data("nombrecolor", String($("#txtColornombre").val()))
+                    //.data("nombremarca", String($("#txtMarcanombre").val()))
+                    //.data("nombretalla", String($("#txtTallanombre").val()))
+                    //.data("nombrecolor", String($("#txtColornombre").val()))
                     .data("precio", parseInt($("#txtproductoprecio").val()))
                     .data("Stock", parseInt($("#txtproductostock").val()))
                     .data("Codigo", String($("#txtproductocodigo").val()))
@@ -325,9 +325,9 @@ $('#btnAgregar').on('click', function () {
             $("<td>").addClass("productocantidad").text($("#txtproductocantidad").val()),
             $("<td>").addClass("producto").data("idproducto", $("#txtIdProducto").val()).text($("#txtproductonombre").val()),
             $("<td>").text($("#txtproductodescripcion").val()),
-            $("<td>").addClass("producto").data("idproducto", $("#txtIdProducto").val()).text($("#txtMarcanombre").val()),
-            $("<td>").addClass("producto").data("idproducto", $("#txtIdProducto").val()).text($("#txtTallanombre").val()),
-            $("<td>").addClass("producto").data("idproducto", $("#txtIdProducto").val()).text($("#txtColornombre").val()),
+            //$("<td>").addClass("producto").data("idproducto", $("#txtIdProducto").val()).text($("#txtMarcanombre").val()),
+            //$("<td>").addClass("producto").data("idproducto", $("#txtIdProducto").val()).text($("#txtTallanombre").val()),
+            //$("<td>").addClass("producto").data("idproducto", $("#txtIdProducto").val()).text($("#txtColornombre").val()),
             $("<td>").addClass("productoprecio").text($("#txtproductoprecio").val()),
             $("<td>").addClass("importetotal").text(importetotal),
 
@@ -337,9 +337,9 @@ $('#btnAgregar').on('click', function () {
         $("#txtproductocodigo").val("");
         $("#txtproductonombre").val("");
         $("#txtproductodescripcion").val("");
-        $("#txtMarcanombre").val("");
-        $("#txtTallanombre").val("");
-        $("#txtColornombre").val("");
+        //$("#txtMarcanombre").val("");
+        //$("#txtTallanombre").val("");
+        //$("#txtColornombre").val("");
         $("#txtproductostock").val("");
         $("#txtproductoprecio").val("");
         $("#txtproductocantidad").val("0");
@@ -370,9 +370,9 @@ $('#tbVenta tbody').on('click', 'button[class="btn btn-primary btn-sm"]', functi
     var cantidadproducto = $(this).data("cantidadproducto");
     var nombre = $(this).data("nombre");
     var descripcion = $(this).data("descripcion");
-    var nombremarca = $(this).data("nombremarca");
-    var nombretalla = $(this).data("nombretalla");
-    var nombrecolor = $(this).data("nombrecolor");
+    //var nombremarca = $(this).data("nombremarca");
+    //var nombretalla = $(this).data("nombretalla");
+    //var nombrecolor = $(this).data("nombrecolor");
     var precio = $(this).data("precio");
     let Stock = $(this).data("Stock");
    
@@ -384,9 +384,9 @@ $('#tbVenta tbody').on('click', 'button[class="btn btn-primary btn-sm"]', functi
     $("#txtproductocodigo").val(Codigo);
     $("#txtproductonombre").val(nombre);
     $("#txtproductodescripcion").val(descripcion);
-    $("#txtMarcanombre").val(nombremarca);
-    $("#txtTallanombre").val(nombretalla);
-    $("#txtColornombre").val(nombrecolor);
+    //$("#txtMarcanombre").val(nombremarca);
+    //$("#txtTallanombre").val(nombretalla);
+    //$("#txtColornombre").val(nombrecolor);
     $("#txtproductostock").val(Stock);
     $("#txtproductoprecio").val(precio);
     $("#txtproductocantidad").val("");
@@ -501,9 +501,9 @@ $('#btnTerminarGuardarVenta').on('click', function () {
                 $("#txtproductocodigo").val("");
                 $("#txtproductonombre").val("");
                 $("#txtproductodescripcion").val("");
-                $("#txtMarcanombre").val("");
-                $("#txtTallanombre").val("");
-                $("#txtColornombre").val("");
+                //$("#txtMarcanombre").val("");
+                //$("#txtTallanombre").val("");
+                //$("#txtColornombre").val("");
                 $("#txtproductostock").val("");
                 $("#txtproductoprecio").val("");
                 $("#txtproductocantidad").val("0");
@@ -563,7 +563,7 @@ function calcularPrecios() {
         var importetotal = parseFloat($(fila).find("td.importetotal").text());
         sumatotal = sumatotal + importetotal;
     });
-    igv = sumatotal * 0.18;
+    igv = sumatotal * 0.15;
     subtotal = sumatotal - igv;
 
 

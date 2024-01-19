@@ -17,71 +17,112 @@
             </div>
             <div class="card-body p-2 card-venta">
                 <div class="row">
-                    @*<div class="col-sm-3">
-                        <div class="input-group input-group-sm mb-2">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text bg-dark  text-white" for="inputGroupSelect01">Tipo Documento</label>
-                            </div>
-                            <select class="custom-select" id="cboventatipodocumento">
-                                <option value="Boleta">Boleta</option>
-                                <option value="Factura">Factura</option>
-                            </select>
-                        </div>
-                    </div>*@
-                  
-                    <input id="txtIdUsuario" type="hidden" value="0" />
-                    <div class="col-sm-2">
-                        <div class="form-group mb-0">
-                            <label for="txtRucProveedor" class="col-form-label col-form-label-sm">Nombre:</label>
-                            <label class="form-control form-control-sm model mb-1" readonly id="lblempleadonombre"></label>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="form-group mb-0">
-                            <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Apellido:</label>
-                            <label class="form-control form-control-sm model mb-1" readonly id="lblempleadoapellido"></label>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="form-group mb-0">
-                            <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Correo:</label>
-                            <label class="form-control form-control-sm model mb-1" readonly id="lblempleadocorreo"></label>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <div class="input-group input-group-sm mb-2">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text bg-dark  text-white" for="inputGroupSelect01">Fecha de Venta</label>
-                            </div>
-                            <input id="txtfechaventa" readonly type="text" class="form-control">
-                        </div>
-                    </div>
-
-
-
-                    @*<div class="col-sm-6">
-                        <div class="card bg-dark text-white border-info">
+                    @*<div class="col-sm-10">
+                        <div class="card border-info">
                             <div class="card-body p-2">
+                                <h6 class="card-title mb-1 text-info">Detalle Empleado</h6>
+                                <div class="row align-items-end">
 
-                                <div class="row">
-                                    <div class="col-sm-10">
-                                        <h6 class="card-title mb-1">Datos Empleado</h6>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <div class="float-right">
-                                            <a class="btn btn-light btn-sm" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                <i class="fa fa-bars" aria-hidden="true"></i>
-                                            </a>
+                                    <input id="txtIdUsuario" type="hidden" value="0" />
+                                    <div class="col-sm-3">
+                                        <div class="form-group mb-0">
+                                            <label for="txtRucProveedor" class="col-form-label col-form-label-sm">Nombre:</label>
+                                            <label class="form-control form-control-sm model mb-1" readonly id="lblempleadonombre"></label>
                                         </div>
                                     </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group mb-0">
+                                            <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Apellido:</label>
+                                            <label class="form-control form-control-sm model mb-1" readonly id="lblempleadoapellido"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group mb-0">
+                                            <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Correo:</label>
+                                            <label class="form-control form-control-sm model mb-1" readonly id="lblempleadocorreo"></label>
+                                        </div>
+                                    </div>
+
+
+
+
 
                                 </div>
 
                             </div>
                         </div>
                     </div>*@
+
+
+                    @*<div class="col-sm-3">
+            <div class="input-group input-group-sm mb-2">
+                <div class="input-group-prepend">
+                    <label class="input-group-text bg-dark  text-white" for="inputGroupSelect01">Tipo Documento</label>
                 </div>
+                <select class="custom-select" id="cboventatipodocumento">
+                    <option value="Boleta">Boleta</option>
+                    <option value="Factura">Factura</option>
+                </select>
+            </div>
+        </div>*@
+
+
+
+
+                    <div class="col-sm-6">
+                        <div class="mb-3" id="accordion">
+                            <div class="card bg-dark text-white border-info">
+                                <div class="card-body p-2">
+
+
+                                    <div class="card-header p-2 bg-dark  text-white" id="headingOne">
+                                        Detalle Empleado
+                                        <button class="btn btn-light btn-sm float-right" data-toggle="collapse" data-target="#collapseOne" aria-controls="collapseOne">
+                                            <i class="fa fa-bars" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div class="row mt-2">
+                                            <input id="txtIdUsuario" type="hidden" value="0" />
+                                            <div class="col-sm-4">
+                                                <div class="form-group mb-0">
+                                                    <label for="txtRucProveedor" class="col-form-label col-form-label-sm">Nombre:</label>
+                                                    <label class="form-control form-control-sm model mb-1" readonly id="lblempleadonombre"></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group mb-0">
+                                                    <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Apellido:</label>
+                                                    <label class="form-control form-control-sm model mb-1" readonly id="lblempleadoapellido"></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group mb-0">
+                                                    <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Correo:</label>
+                                                    <label class="form-control form-control-sm model mb-1" readonly id="lblempleadocorreo"></label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="col-sm-2">
+                            <div class="input-group input-group-sm mb-2">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text bg-dark  text-white" for="inputGroupSelect01">Fecha</label>
+                                </div>
+                                <input id="txtfechaventa" readonly type="text" class="form-control">
+                            </div>
+                        </div>
+
+
+                    </div>
 
                 <div class="row mt-2">
                     <div class="col-sm-6">
@@ -158,7 +199,7 @@
                                             <input type="text" class="form-control form-control-sm model" readonly id="txtproductodescripcion" name="Descripcion">
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    @*<div class="col-sm-3">
                                         <div class="form-group mb-0">
                                             <label for="txtMarcanombre" class="col-form-label col-form-label-sm">Marca:</label>
                                             <input type="text" class="form-control form-control-sm model" readonly id="txtMarcanombre" name="Nombre">
@@ -175,7 +216,7 @@
                                             <label for="txtColornombre" class="col-form-label col-form-label-sm">Color:</label>
                                             <input type="text" class="form-control form-control-sm model" readonly id="txtColornombre" name="Nombre">
                                         </div>
-                                    </div>
+                                    </div>*@
 
                                     <div class="col-sm-2">
                                         <div class="form-group mb-0">
@@ -216,9 +257,9 @@
 
 
                 <hr />
-                <div class="row">
+                @*<div class="row">
                     <div class="col-sm-12"><h6 class="text-info">Detalle Venta</h6></div>
-                </div>
+                </div>*@
                 <div class="row mt-3">
                     <div class="col-sm-12">
                         <div class="table-responsive-sm">
@@ -230,9 +271,9 @@
                                         <th>Cantidad</th>
                                         <th>Producto</th>
                                         <th>Descripcion</th>
-                                        <th>Marca</th>
+                                        @*<th>Marca</th>
                                         <th>Talla</th>
-                                        <th>Color</th>
+                                        <th>Color</th>*@
                                         <th>Precio Unidad</th>
                                         <th>Importe Total</th>
                                     </tr>

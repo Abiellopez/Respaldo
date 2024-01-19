@@ -1,6 +1,5 @@
 ﻿using CapaModelo;
 using System;
-using Utilidad;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -88,9 +87,9 @@ namespace CapaDatos
             }
         }
 
-        public bool RegistrarProducto(Producto oProducto)
+        public int RegistrarProducto(Producto oProducto)
         {
-            bool respuesta = true;
+            int respuesta = 0;
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 try
@@ -106,19 +105,19 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("ruta", oProducto.RutaImagen);
                     cmd.Parameters.AddWithValue("imagen", oProducto.NombreImagen);
 
-                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     oConexion.Open();
 
                     cmd.ExecuteNonQuery();
 
-                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    respuesta = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    respuesta = false;
+                    respuesta = 0;
                 }
             }
             return respuesta;
