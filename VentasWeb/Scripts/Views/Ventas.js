@@ -54,12 +54,12 @@ $(document).ready(function () {
     //    contentType: "application/json; charset=utf-8",
     //    success: function (data) {
 
-    //        //Producto          
+    //        //Producto
     //        $(data.IdProductoBodega, function (row)
     //        {
     //                return "<button class='btn btn-sm btn-warning ml-2' type='button' onclick='productoSelect(" + JSON.stringify(row) + ")'>Add</button>"
     //        });
-         
+
     //      ;
     //        $("#imgProducto").attr({ "src": "data:image/" + json.extension + ";base64," + json.base64 });
     //        $("#txtCod").val(data.Codigo)
@@ -78,9 +78,9 @@ $(document).ready(function () {
     //});
 
 
- 
 
-   /* OBTENER PRODUCTOS*/
+    /* OBTENER PRODUCTOS*/
+   
     tablaproducto = $('#tbProducto').DataTable({
         "ajax": {
             "url": $.MisUrls.url._ObtenerProductoStockPorTienda,
@@ -96,14 +96,7 @@ $(document).ready(function () {
                 "searchable": false,
                 "width": "90px"
             },
-          /*  $("#imgProducto").attr({ "src": "data:image/" + json.extension + ";base64," + json.base64 }),*/
-            //{
-            //    "data": "oProducto", "render": function (data) {
 
-            //        return data.base64
-                  
-            //    }
-            //},
             {
                 "data": "oProducto", render: function (data) {
                     return data.Codigo
@@ -138,6 +131,7 @@ $(document).ready(function () {
             },
 
             { "data": "Stock" }
+
 
         ],
         "language": {
@@ -228,12 +222,10 @@ function productoSelect(json) {
     $("#txtproductocodigo").val(json.oProducto.Codigo);
     $("#txtproductonombre").val(json.oProducto.Nombre);
     $("#txtproductodescripcion").val(json.oProducto.Descripcion);
-    //$("#txtMarcanombre").val(json.oMarca.Nombre);
-    //$("#txtTallanombre").val(json.oTalla.Nombre);
-    //$("#txtColornombre").val(json.oColor.Nombre);
     $("#txtproductostock").val(json.Stock);
     $("#txtproductoprecio").val(json.PrecioUnidadVenta);
     $("#txtproductocantidad").val("0");
+    $("#imgProducto").attr({ "src": "data:image/" + json.oProducto.extension + ";base64," + json.oProducto.base64 });
     $('#modalProducto').modal('hide');
 }
 
@@ -487,9 +479,12 @@ $('#btnTerminarGuardarVenta').on('click', function () {
         var idproducto = $(fila).find("td.producto").data("idproducto");
         var productoprecio = parseFloat($(fila).find("td.productoprecio").text());
         var importetotal = parseFloat($(fila).find("td.importetotal").text());
-
+        var IVA = parseFloat($(fila).find("td.IVA").text());
+        var Descuento = parseFloat($(fila).find("td.Descuento").text());
         $totalproductos = $totalproductos + productocantidad;
         $totalimportes = $totalimportes + importetotal;
+        $totalimportes = $totalIVA + IVA;
+        $totalimportes = $totalDescuento + Descuento;
 
         DATOS_VENTA = DATOS_VENTA + "<DATOS>" +
             "<IdVenta>0</IdVenta >" +
@@ -497,6 +492,7 @@ $('#btnTerminarGuardarVenta').on('click', function () {
             "<Cantidad>" + productocantidad + "</Cantidad>" +
             "<PrecioUnidad>" + productoprecio + "</PrecioUnidad>" +
             "<ImporteTotal>" + importetotal + "</ImporteTotal>" +
+      
             "</DATOS>"
     });
 
@@ -508,8 +504,11 @@ $('#btnTerminarGuardarVenta').on('click', function () {
         "<CantidadProducto>" + $('#tbVenta tbody tr').length + "</CantidadProducto>" +
         "<CantidadTotal>" + $totalproductos + "</CantidadTotal>" +
         "<TotalCosto>" + $totalimportes + "</TotalCosto>" +
+        "<IVA>" + $totalIVA + "</IVA>" +
+        "<Descuento>" + $totalDescuento + "</Descuento>" +
         "<ImporteRecibido>" + $("#txtmontopago").val() + "</ImporteRecibido>" +
         "<ImporteCambio>" + $("#txtcambio").val() + "</ImporteCambio>" +
+       
         "</VENTA >";
 
     DETALLE_CLIENTE = "<DETALLE_CLIENTE><DATOS>" +
@@ -626,7 +625,16 @@ function calcularPrecios() {
 }
 
 
+function Descuento() {
+    var Descuento = 0;
+    var sumatotal = 0;
 
+    Descuento = sumatotal * 0.10;
+    subtotal = sumatotal - Descuento;
+
+    $("#txtDescuento").val(Descuento.toFixed(2));
+    $("#txttotal").val(Importetotal.toFixed(2));
+}
 
 function controlarStock($idproducto, $cantidad, $restar) {
     var request = {

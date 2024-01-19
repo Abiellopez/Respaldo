@@ -53,6 +53,8 @@ namespace VentasWeb.Controllers
 
                 oVenta.TextoImporteRecibido = oVenta.ImporteRecibido.ToString("N", formato);
                 oVenta.TextoImporteCambio = oVenta.ImporteCambio.ToString("N", formato);
+                oVenta.TextoIVA = oVenta.IVA.ToString("N", formato);
+                oVenta.TextoDescuento = oVenta.Descuento.ToString("N", formato);
                 oVenta.TextoTotalCosto = oVenta.TotalCosto.ToString("N", formato);
             }
                

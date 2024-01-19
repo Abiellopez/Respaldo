@@ -93,6 +93,8 @@ namespace CapaDatos
                                                        TotalCosto = float.Parse(dato.Element("TotalCosto").Value, NuevaCultura),
                                                        ImporteRecibido = float.Parse(dato.Element("ImporteRecibido").Value, NuevaCultura),
                                                        ImporteCambio = float.Parse(dato.Element("ImporteCambio").Value, NuevaCultura),
+                                                       IVA = float.Parse(dato.Element("IVA").Value, NuevaCultura),
+                                                       Descuento = float.Parse(dato.Element("Descuento").Value, NuevaCultura),
                                                        FechaRegistro = dato.Element("FechaRegistro").Value
                                                    }).FirstOrDefault();
                                 rptDetalleVenta.oUsuario = (from dato in doc.Element("DETALLE_VENTA").Elements("DETALLE_USUARIO")

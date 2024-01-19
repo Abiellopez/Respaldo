@@ -327,11 +327,11 @@ function Guardar() {
                 IdProducto: $("#txtid").val(),
                 Nombre: $("#txtNombre").val(),
                 Descripcion: $("#txtDescripcion").val(),
-                oCategoria: { IdCategoria: $("#cbocategoria").val() },
-                oMarca: { CodigoMarca: $("#cboMarca").val() },
-                oEstilo: { CodigoEstilo: $("#cboEstilo").val() },  
-                oTalla: { IdTalla: $("#cboTalla").val() },
-                oColor: { IdColor: $("#cboColor").val() },
+                IdCategoria: $("#cboCategoria").val(),
+                CodigoMarca: $("#cboMarca").val(),
+               CodigoEstilo: $("#cboEstilo").val(),
+                IdTalla: $("#cboTalla").val(),
+               IdColor: $("#cboColor").val(),
                 Activo: ($("#cboEstado").val() == "1" ? true : false)
             }
 
@@ -347,7 +347,6 @@ function Guardar() {
            
             processData: false,
             contentType: false,
-         /*   contentType: "application/json; charset=utf-8",*/
             success: function (data) {
 
                 if (data.resultado) {
@@ -367,6 +366,59 @@ function Guardar() {
         });
 
     }
+
+//function Guardar() {
+//    if ($("#form").valid()) {
+//    var ImagenSeleccionada = ($("#fileProducto"))[0].files[0];  
+//        var request = new FormData();
+
+      //var objeto = {
+      //      IdProducto: parseInt($("#txtid").val()),
+      //      Nombre: $("#txtNombre").val(),
+      //      Descripcion: $("#txtDescripcion").val(),
+      //      IdCategoria: $("#cboCategoria").val(),
+      //      CodigoMarca: $("#cboMarca").val(),
+      //      CodigoEstilo: $("#cboEstilo").val(),
+      //      IdTalla: $("#cboTalla").val(),
+      //      IdColor: $("#cboColor").val(),
+      //      Activo: ($("#cboEstado").val() == "1" ? true : false)
+      //      }      
+        
+    
+      //  request.append("imagenArchivo", ImagenSeleccionada);
+      //  request.append("objeto", JSON.stringify(objeto));
+      
+      //  jQuery.ajax({
+            //url: $.MisUrls.url._GuardarProducto,
+            //type: "POST",
+            //data: JSON.stringify(request),
+            //dataType: "json",
+            //contentType: "application/json; charset=utf-8",
+            //success: function (data) {
+
+            //    if (data.resultado) {
+            //        tabladata.ajax.reload();
+            //        $('#FormModal').modal('hide');
+//                } else {
+
+//                    swal("Mensaje", "No se pudo guardar los cambios", "warning")
+//                }
+//            },
+//            error: function (error) {
+//                console.log(error)
+//            },
+//            beforeSend: function () {
+
+//            },
+//        });
+
+//    }
+
+//}
+
+
+
+
 
 
 function eliminar($id) {

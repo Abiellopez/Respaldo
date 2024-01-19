@@ -115,7 +115,7 @@ namespace CapaDatos
                     respuesta = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     respuesta = 0;
                 }

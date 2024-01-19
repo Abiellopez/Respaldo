@@ -57,10 +57,10 @@ namespace VentasWeb.Controllers
 
 
         [HttpPost]
-        public JsonResult Guardar(string objeto, HttpPostedFileBase imagenArchivo)
+        public JsonResult Guardar(string objeto,Producto obj, HttpPostedFileBase imagenArchivo)
         {
-
-            Response oresponse = new Response() { resultado = true, mensaje = "" };
+         
+            Response oresponse = new Response() { resultado = false, mensaje = "" };
 
             try
             {
@@ -73,8 +73,7 @@ namespace VentasWeb.Controllers
                 oProducto.NombreImagen = "";
 
                 if (!Directory.Exists(GuardarEnRuta))
-                    Directory.CreateDirectory(GuardarEnRuta);
-
+                    Directory.CreateDirectory(GuardarEnRuta);                   
 
                 if (oProducto.IdProducto == 0)
                 {
@@ -99,10 +98,6 @@ namespace VentasWeb.Controllers
 
                     oresponse.resultado = CD_Producto.Instancia.ActualizarRutaImagen(oProducto);
                 }
-
-
-
-
             }
             catch (Exception e)
             {
@@ -112,26 +107,6 @@ namespace VentasWeb.Controllers
 
             return Json(oresponse, JsonRequestBehavior.AllowGet);
         }
-
-
-        //[HttpPost]
-        //public JsonResult Guardar(Producto objeto)
-        //{
-        //    bool respuesta = false;
-
-        //    if (objeto.IdProducto == 0)
-        //    {
-
-        //        respuesta = CD_Producto.Instancia.RegistrarProducto(objeto);
-        //    }
-        //    else
-        //    {
-        //        respuesta = CD_Producto.Instancia.ModificarProducto(objeto);
-        //    }
-
-
-        //    return Json(new { resultado = respuesta }, JsonRequestBehavior.AllowGet);
-        //}
 
         [HttpGet]
         public JsonResult Eliminar(int id = 0)
