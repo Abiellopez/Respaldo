@@ -1,6 +1,20 @@
 ﻿var tablaproducto;
 var tablacliente;
 
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('imgProducto')
+                .attr('src', e.target.result)
+                .width(130)
+                .height(120);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
 $(document).ready(function () {
 
@@ -9,7 +23,7 @@ $(document).ready(function () {
     $("#txtfechaventa").val(ObtenerFecha());
 
 
-    //OBTENER PROVEEDORES
+    //OBTENER Usuario
     jQuery.ajax({
         url: $.MisUrls.url._ObtenerUsuario,
         type: "GET",
@@ -33,10 +47,40 @@ $(document).ready(function () {
 
 
 
+    //jQuery.ajax({
+    //    url: $.MisUrls.url._ObtenerProductoStockPorTienda,
+    //    type: "GET",
+    //    dataType: "json",
+    //    contentType: "application/json; charset=utf-8",
+    //    success: function (data) {
+
+    //        //Producto          
+    //        $(data.IdProductoBodega, function (row)
+    //        {
+    //                return "<button class='btn btn-sm btn-warning ml-2' type='button' onclick='productoSelect(" + JSON.stringify(row) + ")'>Add</button>"
+    //        });
+         
+    //      ;
+    //        $("#imgProducto").attr({ "src": "data:image/" + json.extension + ";base64," + json.base64 });
+    //        $("#txtCod").val(data.Codigo)
+    //        $("#txtnom").text(data.Nombre);
+    //        $("#txtdescrip").text(data.Descripcion);
+    //        $("#txtMar").text(data.oMarca.Nombre);
+    //        $("#txtTal").text(data.oMarca.Nombre);
+    //        $("#txtCol").text(data.oMarca.Nombre);
+    //        $("#txtSto").text(data.Stock);
+    //    },
+    //    error: function (error) {
+    //        console.log(error)
+    //    },
+    //    beforeSend: function () {
+    //    },
+    //});
+
 
  
 
-    //OBTENER PRODUCTOS
+   /* OBTENER PRODUCTOS*/
     tablaproducto = $('#tbProducto').DataTable({
         "ajax": {
             "url": $.MisUrls.url._ObtenerProductoStockPorTienda,
@@ -52,11 +96,20 @@ $(document).ready(function () {
                 "searchable": false,
                 "width": "90px"
             },
+          /*  $("#imgProducto").attr({ "src": "data:image/" + json.extension + ";base64," + json.base64 }),*/
+            //{
+            //    "data": "oProducto", "render": function (data) {
+
+            //        return data.base64
+                  
+            //    }
+            //},
             {
                 "data": "oProducto", render: function (data) {
                     return data.Codigo
                 }
             },
+
             {
                 "data": "oProducto", render: function (data) {
                     return data.Nombre

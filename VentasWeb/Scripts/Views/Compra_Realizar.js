@@ -18,7 +18,7 @@ $(document).ready(function () {
         "columns": [
             {
                 "data": "IdProveedor", "render": function (data, type, row, meta) {
-                    return "<button class='btn btn-sm btn-primary ml-2' type='button' onclick='proveedorSelect(" + JSON.stringify(row) + ")'><i class='fas fa-check'></i></button>"
+                    return "<button class='btn btn-sm btn-warning ml-2' type='button' onclick='proveedorSelect(" + JSON.stringify(row) + ")'>Add</button>"
                 },
                 "orderable": false,
                 "searchable": false,
@@ -45,7 +45,7 @@ $(document).ready(function () {
         "columns": [
             {
                 "data": "IdBodega", "render": function (data, type, row, meta) {
-                    return "<button class='btn btn-sm btn-primary ml-2' type='button' onclick='tiendaSelect(" + JSON.stringify(row) + ")'><i class='fas fa-check'></i></button>"
+                    return "<button class='btn btn-sm btn-warning ml-2' type='button' onclick='tiendaSelect(" + JSON.stringify(row) + ")'>Add</button>"
                 },
                 "orderable": false,
                 "searchable": false,
@@ -72,7 +72,7 @@ $(document).ready(function () {
         "columns": [
             {
                 "data": "IdProducto", "render": function (data, type, row, meta) {
-                    return "<button class='btn btn-sm btn-primary ml-2' type='button' onclick='productoSelect(" + JSON.stringify(row) + ")'><i class='fas fa-check'></i></button>"
+                    return "<button class='btn btn-sm btn-warning ml-2' type='button' onclick='productoSelect(" + JSON.stringify(row) + ")'>Add</button>"
                 },
                 "orderable": false,
                 "searchable": false,

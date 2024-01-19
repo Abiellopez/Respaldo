@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,6 +56,10 @@ namespace CapaDatos
                                 Codigo = dr["CodigoProducto"].ToString(),
                                 Nombre = dr["NombreProducto"].ToString(),
                                 Descripcion = dr["DescripcionProducto"].ToString(),
+                                RutaImagen = dr["RutaImage"].ToString(),
+                                NombreImagen = dr["NombreImage"].ToString(),
+                                base64 = Utilidades.convertirBase64(Path.Combine(dr["RutaImage"].ToString(), dr["NombreImage"].ToString())),
+                                extension = Path.GetExtension(dr["NombreImage"].ToString()).Replace(".", ""),
 
                             },
 
