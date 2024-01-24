@@ -118,7 +118,8 @@ namespace CapaDatos
                                                                           Cantidad = int.Parse(producto.Element("Cantidad").Value),
                                                                           NombreProducto = producto.Element("NombreProducto").Value,
                                                                           PrecioUnidad = float.Parse(producto.Element("PrecioUnidad").Value, NuevaCultura),
-                                                                          ImporteTotal = float.Parse(producto.Element("ImporteTotal").Value, NuevaCultura)
+                                                                          ImporteTotal = float.Parse(producto.Element("ImporteTotal").Value, NuevaCultura),
+                                                                    
                                                                       }).ToList();
                             }
                             else

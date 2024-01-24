@@ -51,6 +51,9 @@ namespace VentasWeb.Controllers
                                                  TextoImporteTotal = dv.ImporteTotal.ToString("N", formato)
                                              }).ToList();
 
+
+                                            
+
                 oVenta.TextoImporteRecibido = oVenta.ImporteRecibido.ToString("N", formato);
                 oVenta.TextoImporteCambio = oVenta.ImporteCambio.ToString("N", formato);
                 oVenta.TextoIVA = oVenta.IVA.ToString("N", formato);

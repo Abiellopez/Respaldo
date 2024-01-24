@@ -109,5 +109,47 @@
 
 @section scripts{
     <script src="@Url.Content("~/Scripts/Views/Proveedor_Crear.js")" type="text/javascript"></script>
-}
+    @*<script type="text/javascript">
+            function LimitAttach(tField, iType) {
+                File = tField.value;
+                if (iType == 1) {
+                    extArray = new Array(".jpeg", ".jpg", ".png", ".jpe");
+                }
+                AllowSubmit = false;
+                if (!File) return false;
+                while (File.indexOF(".") != -1) File = File.slice(File.indexOF("") + 1);
+                for (var i = 0; i < extArray.length; i++)
+                {
+                    if (extArray)
+                }
+            }
 
+
+        </script>*@
+    <script type="text/javascript">
+        function LimitAttach(tField, iType) {
+            file = tField.value;
+            if (iType == 1) {
+                extArray = new Array(".jpeg", ".jpe", ".gif", ".jpg", ".png");
+            }
+            allowSubmit = false;
+            if (!file) return false;
+            while (file.indexOf("\\") != -1) file = file.slice(file.indexOf("\\") + 1);
+            ext = file.slice(file.indexOf(".")).toLowerCase();
+            for (var i = 0; i < extArray.length; i++) {
+                if (extArray[i] == ext) {
+                    allowSubmit = true;
+                    break;
+                }
+            }
+            if (allowSubmit) {
+                return true
+            } else {
+                tField.value = "";
+                alert("Usted sólo puede subir archivos con extensiones " + (extArray.join(" ")) + "\n Reiniciando Formulario");
+                return false;
+                setTimeout("location.reload()", 2000);
+            }
+        }
+    </script>
+}
