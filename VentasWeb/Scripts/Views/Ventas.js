@@ -525,12 +525,11 @@ $('#btnTerminarGuardarVenta').on('click', function () {
                 //PRECIOS
                 $("#txtsubtotal").val("0");
                 $("#txtigv").val("0");
-                $("#txtDescuento").val("0");
+                $("#txtDescuento").val("0.00");
                 $("#txttotal").val("0");
                 $("#txtmontopago").val("");
                 $("#txtcambio").val("");
-                $("#txtigv").val("");
-                $("#txtDEscuento").val("");
+
 
 
                 $("#tbVenta tbody").html("");
@@ -560,11 +559,15 @@ $('#btnTerminarGuardarVenta').on('click', function () {
 function calcularCambio() {
     var montopago = $("#txtmontopago").val().trim() == "" ? 0 : parseFloat($("#txtmontopago").val().trim());
     var totalcosto = parseFloat($("#txttotal").val().trim());
+    var Desc = parseFloat($("#txtDescuento").val().trim());
     var cambio = 0;
-    cambio = (montopago <= totalcosto ? totalcosto : montopago) - totalcosto;
+
+    cambio = (montopago <= totalcosto ? totalcosto : montopago) - (totalcosto - (totalcosto * Desc));
 
     $("#txtcambio").val(cambio.toFixed(2));
 }
+
+
 
 $('#btncalcular').on('click', function () {
     calcularCambio();
@@ -574,6 +577,7 @@ $('#btncalcular').on('click', function () {
 function calcularPrecios() {
     var subtotal = 0;
     var igv = 0;
+    var Descuento = 0;
     var sumatotal = 0;
     $('#tbVenta > tbody  > tr').each(function (index, tr) {
         var fila = tr;
@@ -582,7 +586,7 @@ function calcularPrecios() {
     });
     igv = sumatotal * 0.15;
     subtotal = sumatotal - igv;
-
+    Descuento = sumatotal - (sumatotal * Descuento);
 
     $("#txtsubtotal").val(subtotal.toFixed(2));
     $("#txtigv").val(igv.toFixed(2));
