@@ -225,7 +225,6 @@ function productoSelect(json) {
     $("#txtproductostock").val(json.Stock);
     $("#txtproductoprecio").val(json.PrecioUnidadVenta);
     $("#txtproductocantidad").val("0");
-    $("#imgProducto").attr({ "src": "data:image/" + json.oProducto.extension + ";base64," + json.oProducto.base64 });
     $('#modalProducto').modal('hide');
 }
 
@@ -262,9 +261,6 @@ $("#txtproductocodigo").on('keypress', function (e) {
                             $("#txtproductocodigo").val(item.oProducto.Codigo);
                             $("#txtproductonombre").val(item.oProducto.Nombre);
                             $("#txtproductodescripcion").val(item.oProducto.Descripcion);
-                            //$("#txtMarcanombre").val(item.oMarca.Nombre);
-                            //$("#txtTallanombre").val(item.oTalla.Nombre);
-                            //$("#txtColornombre").val(item.oColor.Nombre);
                             $("#txtproductostock").val(item.Stock);
                             $("#txtproductoprecio").val(item.PrecioUnidadVenta);
                             encontrado = true;
@@ -277,10 +273,7 @@ $("#txtproductocodigo").on('keypress', function (e) {
                         $("#txtIdProducto").val("0");
                         $("#txtproductocodigo").val("");
                         $("#txtproductonombre").val("");
-                        $("#txtproductodescripcion").val("");
-             //$("#txtMarcanombre").val("");
-             //           $("#txtTallanombre").val("");
-             //           $("#txtColornombre").val("");           
+                        $("#txtproductodescripcion").val("");        
                         $("#txtproductostock").val("");
                         $("#txtproductoprecio").val("");
                         $("#txtproductocantidad").val("0");
