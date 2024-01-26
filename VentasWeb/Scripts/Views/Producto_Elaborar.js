@@ -276,7 +276,7 @@ function abrirPopUpForm(json) {
     if (json != null) {
 
         $("#txtid").val(json.IdProducto);
-        $("#imgProducto").attr({ "src": "data:image/" + json.extension + ";base64," + json.base64 });
+        $("#imgProducto").attr({ "src": "data:image/jpg" + json.extension + ";base64," + json.base64 });
         $("#txtCodigo").val(json.Codigo);
         $("#txtNombre").val(json.Nombre);
         $("#txtDescripcion").val(json.Descripcion);
