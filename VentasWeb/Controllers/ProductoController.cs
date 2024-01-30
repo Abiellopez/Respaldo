@@ -53,11 +53,11 @@ namespace VentasWeb.Controllers
         }
 
 
-
+        
 
 
         [HttpPost]
-        public JsonResult Guardar(string objeto,Producto obj, HttpPostedFileBase imagenArchivo)
+        public JsonResult Guardar(string objeto, HttpPostedFileBase imagenArchivo)
         {
          
             Response oresponse = new Response() { resultado = false, mensaje = "" };
@@ -72,8 +72,9 @@ namespace VentasWeb.Controllers
                 oProducto.RutaImagen = GuardarEnRuta;
                 oProducto.NombreImagen = "";
 
+
                 if (!Directory.Exists(GuardarEnRuta))
-                    Directory.CreateDirectory(GuardarEnRuta);                   
+                    Directory.CreateDirectory(GuardarEnRuta);
 
                 if (oProducto.IdProducto == 0)
                 {
@@ -86,6 +87,8 @@ namespace VentasWeb.Controllers
                 {
                     oresponse.resultado = CD_Producto.Instancia.ModificarProducto(oProducto);
                 }
+     
+
 
 
                 if (imagenArchivo != null && oProducto.IdProducto != 0)

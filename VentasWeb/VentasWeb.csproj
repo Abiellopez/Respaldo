@@ -2020,6 +2020,7 @@
     <Content Include="Scripts\Views\Home_Index.js" />
     <Content Include="Scripts\Views\Permisos_Crear.js" />
     <Content Include="Scripts\Views\Categoria_Crear.js" />
+    <Content Include="Scripts\Views\prod.js" />
     <Content Include="Scripts\Views\Producto_Elaborar.js" />
     <Content Include="Scripts\Views\Reporte_Compra.js" />
     <Content Include="Scripts\Views\Reporte_Prod.js" />
