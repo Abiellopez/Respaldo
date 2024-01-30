@@ -48,24 +48,42 @@ $('#btnBuscar').on('click', function () {
                 $("#tbReporte tbody").html("");
 
 
-                $.each(data, function (i, row) {
 
-                    $("<tr>").append(
-                        $("<td>").text(row["NombreBodega"]),
-                        $("<td>").text(row["CodigoProducto"]),
-                        $("<td>").text(row["NombreProducto"]),
-                        $("<td>").text(row["DescripcionProducto"]),
-                        $("<td>").text(row["NombreCategoria"]),
-                        $("<td>").text(row["NombreMarca"]),
-                        $("<td>").text(row["NombreEstilo"]),
-                        $("<td>").text(row["NombreTalla"]),
-                        $("<td>").text(row["NombreColor"]),
-                        $("<td>").text(row["StockenTienda"]),
-                        $("<td>").text(row["PrecioCompra"]),
-                        $("<td>").text(row["PrecioVenta"])
+                tabladata = $('#tbdata').DataTable({
+                    "ajax": {
+                        "url": $.MisUrls.url._ObtenerMarca,
+                        "type": "GET",
+                        "datatype": "json"
+                    },
 
-                    ).appendTo("#tbReporte tbody");
-                })
+                    "columns": [
+                        { "data": "NombreBodega" },
+                        { "data": "CodigoProducto" },
+                        { "data": "NombreProducto" },
+                        { "data": "DescripcionProducto" },
+                        { "data": "NombreCategoria" },
+                        { "data": "NombreMarca" },
+                        { "data": "NombreEstilo" },
+                        { "data": "NombreColor" },
+                        { "data": "StockenTienda" },
+                        { "data": "PrecioCompra" },
+                        { "data": "PrecioVenta" },
+
+                        {
+                            "data": "IdProducto", "render": function (data, type, row, meta) {
+                                return "<button class='btn btn-primary btn-sm' type='button' onclick='abrirPopUpForm(" + JSON.stringify(row) + ")'><i class='fas fa-pen'></i></button>"
+                            },
+                            "orderable": false,
+                            "searchable": false,
+                            "width": "90px"
+                        }
+
+                    ],
+                        "language": {
+                        "url": $.MisUrls.url.Url_datatable_spanish
+                    },
+                    responsive: true
+                });
             }
         },
         error: function (error) {
@@ -76,6 +94,60 @@ $('#btnBuscar').on('click', function () {
     });
 
 })
+
+
+
+
+function abrirPopUpForm(json) {
+
+    $("CodigoProducto").val(json.CodigoProducto);
+    $("PrecioVenta").val("0.00");
+    $('#FormModal').modal('show');
+
+}
+
+function Guardar() {
+
+    if ($("#form").valid()) {
+
+        var request = {
+            objeto: {
+                CodigoProducto: parseInt($("#txtid").val()),
+                PrecioVentas: $("PrecioVenta").val()
+            }
+        }
+
+        jQuery.ajax({
+            url: $.MisUrls.url._GuardarRebaja,
+            type: "POST",
+            data: JSON.stringify(request),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+
+                if (data.resultado) {
+                    tabladata.ajax.reload();
+                    $('#FormModal').modal('hide');
+                } else {
+
+                    swal("Mensaje", "No se pudo guardar los cambios", "warning")
+                }
+            },
+            error: function (error) {
+                console.log(error)
+            },
+            beforeSend: function () {
+
+            },
+        });
+
+    }
+
+}
+
+
+
+
 
 function printData() {
 
@@ -101,3 +173,7 @@ function printData() {
     newWin.print();
     newWin.close();
 }
+
+
+
+

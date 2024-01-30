@@ -80,6 +80,52 @@ namespace CapaDatos
             return lista;
         }
 
+
+
+        public bool ModificarProductoTienda(ProductoTienda oProductoTienda)
+        {
+            bool respuesta = true;
+            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("usp_ModificarProductoTienda", oConexion);
+                    cmd.Parameters.AddWithValue("IdProductoBodega", oProductoTienda.IdProductoBodega);
+                    cmd.Parameters.AddWithValue("IdProducto", oProductoTienda.oProducto.IdProducto);
+                    cmd.Parameters.AddWithValue("IdBodega", oProductoTienda.oTienda.IdBodega);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    oConexion.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+
+                }
+                catch (Exception)
+                {
+                    respuesta = false;
+                }
+
+            }
+
+            return respuesta;
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         public List<ReporteVenta> ReporteVenta(DateTime FechaInicio, DateTime FechaFin, int IdBodega)
         {
             List<ReporteVenta> lista = new List<ReporteVenta>();

@@ -66,12 +66,48 @@
                                     <th>EXISTENCIAS</th>
                                     <th>Precio Compra</th>
                                     <th>Precio Venta</th>
+                                    <th>Rebaja</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="FormModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header btn-info text-white bg-dark">
+                <h5 class="modal-title" id="exampleModalLabel">Marcas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form">
+                    <input id="txtid" name="IdRol" value="0" type="hidden" />
+                    <div class="form-group">
+                        <label for="txtNombre" class="col-form-label">Nombre: <span class="error"></span></label>
+                        <input type="text" class="form-control form-control-sm model" id="txtNombre" name="Nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="cboEstado" class="col-form-label">Activo:</label>
+                        <select class="form-control form-control-sm model" id="cboEstado" name="Activo">
+                            <option value="1">Activo</option>
+                            <option value="0">No Activo</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-sm btn-primary" onclick="Guardar()">Guardar</button>
             </div>
         </div>
     </div>
