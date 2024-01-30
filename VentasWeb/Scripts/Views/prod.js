@@ -17,9 +17,6 @@ function readURL(input) {
 
         reader.readAsDataURL(input.files[0]);
     }
-    else {
-        swal("Mensaje", "debe agregar una imagen", "warning")
-    }
 }
 
 
@@ -346,7 +343,7 @@ function Guardar() {
 
 
                 } else {
-
+                    console.log(data)
                     swal("Mensaje", "No se pudo guardar los cambios", "warning")
                 }
             },
