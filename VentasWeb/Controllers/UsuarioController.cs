@@ -36,7 +36,7 @@ namespace VentasWeb.Controllers
             }
             else
             {
-                objeto.Clave = Desencriptar.GetSHA256(objeto.Clave);
+                objeto.Clave = Encriptar.GetSHA256(objeto.Clave);
 
                 respuesta = CD_Usuario.Instancia.ModificarUsuario(objeto);
             }

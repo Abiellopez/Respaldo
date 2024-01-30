@@ -122,14 +122,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Configuracion\AsIsBundleOrderer.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\ColorController.cs" />
     <Compile Include="Controllers\CompraController.cs" />
     <Compile Include="Controllers\EstiloController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\IResponse.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MarcaController.cs" />
     <Compile Include="Controllers\PermisosController.cs" />
@@ -147,7 +145,6 @@
     </Compile>
     <Compile Include="Helpers\Helpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilidades\Desencriptar.cs" />
     <Compile Include="Utilidades\Encriptar.cs" />
   </ItemGroup>
   <ItemGroup>
