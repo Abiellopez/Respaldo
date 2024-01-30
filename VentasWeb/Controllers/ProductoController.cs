@@ -81,9 +81,16 @@ namespace VentasWeb.Controllers
 
                 if (oProducto.IdProducto == 0)
                 {
-                    int id = CD_Producto.Instancia.RegistrarProducto(oProducto);
-                    oProducto.IdProducto = id;
-                    oresponse.resultado = oProducto.IdProducto == 0 ? false : true;
+                    if (imagenArchivo != null)
+                    {
+                        int id = CD_Producto.Instancia.RegistrarProducto(oProducto);
+                        oProducto.IdProducto = id;
+                        oresponse.resultado = oProducto.IdProducto == 0 ? false : true;
+                    }
+                    else
+                    {
+                        oresponse.resultado = false;
+                    }
 
                 }
                 else

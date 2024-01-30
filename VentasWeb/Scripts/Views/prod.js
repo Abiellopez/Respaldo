@@ -258,12 +258,6 @@ $(document).ready(function () {
 
 
 
-//$(document).on('click', '.btn-editar', function (event) {
-//    var json = $(this).data("informacion")
-
-//    abrirPopUpForm(json)
-//});
-
 function abrirPopUpForm(json) {
 
     $("#txtid").val(0);
