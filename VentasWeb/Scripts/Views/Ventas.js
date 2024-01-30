@@ -32,38 +32,6 @@ $(document).ready(function () {
 
 
 
-    //jQuery.ajax({
-    //    url: $.MisUrls.url._ObtenerProductoStockPorTienda,
-    //    type: "GET",
-    //    dataType: "json",
-    //    contentType: "application/json; charset=utf-8",
-    //    success: function (data) {
-
-    //        //Producto
-    //        $(data.IdProductoBodega, function (row)
-    //        {
-    //                return "<button class='btn btn-sm btn-warning ml-2' type='button' onclick='productoSelect(" + JSON.stringify(row) + ")'>Add</button>"
-    //        });
-
-    //      ;
-    //        $("#imgProducto").attr({ "src": "data:image/" + json.extension + ";base64," + json.base64 });
-    //        $("#txtCod").val(data.Codigo)
-    //        $("#txtnom").text(data.Nombre);
-    //        $("#txtdescrip").text(data.Descripcion);
-    //        $("#txtMar").text(data.oMarca.Nombre);
-    //        $("#txtTal").text(data.oMarca.Nombre);
-    //        $("#txtCol").text(data.oMarca.Nombre);
-    //        $("#txtSto").text(data.Stock);
-    //    },
-    //    error: function (error) {
-    //        console.log(error)
-    //    },
-    //    beforeSend: function () {
-    //    },
-    //});
-
-
-
     /* OBTENER PRODUCTOS*/
    
     tablaproducto = $('#tbProducto').DataTable({
@@ -115,16 +83,6 @@ $(document).ready(function () {
 
             { "data": "Stock" }
 
-        
-            //{
-
-            //    "data": "oProducto", function (data,json) {
-   
-            //        return data.attr({ "src": "data:image/" + json.oProducto.extension + ";base64," + json.oProducto.base64 });
-                  
-   
-            //    }
-            //}
 
         ],
         "language": {
