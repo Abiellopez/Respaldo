@@ -31,10 +31,10 @@ namespace VentasWeb.Controllers
         }
 
 
-        public JsonResult ObtenerVenta(string fechainicio, string fechafin, int idBodega)
+        public JsonResult ObtenerVenta(string fechainicio, string fechafin)
         {
             
-            List<ReporteVenta> lista = CD_Reportes.Instancia.ReporteVenta(Convert.ToDateTime(fechainicio), Convert.ToDateTime(fechafin), idBodega);
+            List<ReporteVenta> lista = CD_Reportes.Instancia.ReporteVenta(Convert.ToDateTime(fechainicio), Convert.ToDateTime(fechafin));
             return Json(lista, JsonRequestBehavior.AllowGet);
         }
 

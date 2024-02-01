@@ -31,7 +31,7 @@ jQuery.ajax({
         var arrayCantidad = [];
 
         for (var i = 0; i < data.length; i++) {
-
+            
             console.log(data[i].mes)
             arrayMeses.push(data[i].mes)
             arrayCantidad.push(data[i].cantidad)

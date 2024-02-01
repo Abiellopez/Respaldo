@@ -30,42 +30,12 @@ $(document).ready(function () {
     $("#txtFechaFin").datepicker();
     $("#txtFechaInicio").val(ObtenerFecha());
     $("#txtFechaFin").val(ObtenerFecha());
-
-
-    //OBTENER TIENDAS
-    jQuery.ajax({
-        url: $.MisUrls.url._ObtenerTiendas,
-        type: "GET",
-        dataType: "json",
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-
-            $("#cboTienda").LoadingOverlay("hide");
-            $("#cboTienda").html("");
-
-            $("<option>").attr({ "value": 0 }).text("-- Seleccionar todas--").appendTo("#cboTienda");
-            if (data.data != null)
-                $.each(data.data, function (i, item) {
-
-                    if (item.Activo == true) {
-                        $("<option>").attr({ "value": item.IdBodega }).text(item.Nombre).appendTo("#cboTienda");
-                    }
-                })
-        },
-        error: function (error) {
-            console.log(error)
-        },
-        beforeSend: function () {
-            $("#cboTienda").LoadingOverlay("show");
-        },
-    });
-
 });
 
 $('#btnBuscar').on('click', function () {
 
     jQuery.ajax({
-        url: $.MisUrls.url._ObtenerReporteVenta + "?fechainicio=" + $("#txtFechaInicio").val() + "&fechafin=" + $("#txtFechaFin").val() + "&idBodega=" + $("#cboTienda").val() ,
+        url: $.MisUrls.url._ObtenerReporteVenta + "?fechainicio=" + $("#txtFechaInicio").val() + "&fechafin=" + $("#txtFechaFin").val(),
         type: "GET",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
@@ -82,7 +52,6 @@ $('#btnBuscar').on('click', function () {
                         $("<td>").text(row["FechaVenta"]),
                         $("<td>").text(row["NumeroDocumento"]),
                         $("<td>").text(row["TipoDocumento"]),
-                        $("<td>").text(row["NombreBodega"]),
                         $("<td>").text(row["NombreEmpleado"]),
                         $("<td>").text(row["CantidadUnidadesVendidas"]),
                         $("<td>").text(row["CantidadProductos"]),

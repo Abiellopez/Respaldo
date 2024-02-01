@@ -126,7 +126,7 @@ namespace CapaDatos
 
 
 
-        public List<ReporteVenta> ReporteVenta(DateTime FechaInicio, DateTime FechaFin, int IdBodega)
+        public List<ReporteVenta> ReporteVenta(DateTime FechaInicio, DateTime FechaFin)
         {
             List<ReporteVenta> lista = new List<ReporteVenta>();
 
@@ -138,7 +138,6 @@ namespace CapaDatos
                 SqlCommand cmd = new SqlCommand("usp_rptVenta", oConexion);
                 cmd.Parameters.AddWithValue("@FechaInicio", FechaInicio);
                 cmd.Parameters.AddWithValue("@FechaFin", FechaFin);
-                cmd.Parameters.AddWithValue("@IdBodega", IdBodega);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 try
@@ -154,7 +153,6 @@ namespace CapaDatos
                                 FechaVenta = dr["Fecha Venta"].ToString(),
                                 NumeroDocumento = dr["Numero Documento"].ToString(),
                                 TipoDocumento = dr["Tipo Documento"].ToString(),
-                                NombreBodega = dr["Nombre Tienda"].ToString(),
                                 NombreEmpleado = dr["Nombre Empleado"].ToString(),
                                 CantidadUnidadesVendidas = dr["Cantidad Unidades Vendidas"].ToString(),
                                 CantidadProductos = dr["Cantidad Productos"].ToString(),

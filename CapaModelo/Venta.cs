@@ -8,6 +8,13 @@ namespace CapaModelo
 {
     public class Venta
     {
+
+        public Venta()
+        {
+            DetalleVenta = new HashSet<DetalleVenta>();
+        }
+
+
         public int IdVenta { get; set; }
         public string TipoDocumento { get; set; }
         public string Codigo { get; set; }
@@ -28,6 +35,8 @@ namespace CapaModelo
         public Usuario oUsuario { get; set; }
         public Cliente oCliente { get; set; }
         public List<DetalleVenta> oListaDetalleVenta { get; set; }
+
+        public virtual ICollection<DetalleVenta> DetalleVenta { get; set; }
 
     }
 }

@@ -15,5 +15,7 @@ namespace CapaModelo
         public float ImporteTotal { get; set; }
         public string TextoImporteTotal { get; set; }
 
+        public virtual Venta  IdVentaNavigation { get; set; }
+
     }
 }
