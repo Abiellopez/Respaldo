@@ -158,7 +158,11 @@
 
         //CONTROLADOR REPORTE
         $.MisUrls.urls({ _ObtenerReporteProducto :'@Url.Action("ObtenerProducto", "Reporte")' });
-        $.MisUrls.urls({ _ObtenerReporteVenta :'@Url.Action("ObtenerVenta", "Reporte")' });
+        $.MisUrls.urls({ _ObtenerReporteVenta: '@Url.Action("ObtenerVenta", "Reporte")' }); 
+
+
+       //CONTROLADOR DE HOME
+       $.MisUrls.urls({ _ObtenerDatos :'@Url.Action("Grafica", "Home")' });
 
 
         //CONTROLADOR CLIENTE

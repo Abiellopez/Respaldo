@@ -1,4 +1,5 @@
-﻿using CapaModelo;
+﻿using CapaDatos;
+using CapaModelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,15 @@ namespace VentasWeb.Controllers
         {
             Session["Usuario"] = null;
             return RedirectToAction("Index", "Login");
+        }
+
+        public JsonResult Grafica()
+        {
+            CD_Grafica objDT_Reporte = new CD_Grafica();
+
+            List<Grafica> objLista = objDT_Reporte.RetornarVentas();
+
+            return Json(objLista, JsonRequestBehavior.AllowGet);
         }
 
     }

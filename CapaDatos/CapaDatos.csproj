@@ -48,6 +48,7 @@
     <Compile Include="CD_Color.cs" />
     <Compile Include="CD_Compra.cs" />
     <Compile Include="CD_Estilo.cs" />
+    <Compile Include="CD_Grafica.cs" />
     <Compile Include="CD_Marca.cs" />
     <Compile Include="CD_Permisos.cs" />
     <Compile Include="CD_Producto.cs" />

@@ -2017,6 +2017,7 @@
     <Content Include="Scripts\Views\Compra_Realizar.js" />
     <Content Include="Scripts\Views\Consultar_Ventas.js" />
     <Content Include="Scripts\Views\Estilo_Crear.js" />
+    <Content Include="Scripts\Views\Graficas_Barra.js" />
     <Content Include="Scripts\Views\Marca_Elaborar.js" />
     <Content Include="Scripts\Views\Home_Index.js" />
     <Content Include="Scripts\Views\Permisos_Crear.js" />
