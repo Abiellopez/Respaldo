@@ -15,29 +15,7 @@
     //},
     //beforeSend: function () {
     //},
-    //    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //   
 
 
 jQuery.ajax({
