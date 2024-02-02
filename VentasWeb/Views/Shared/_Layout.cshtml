@@ -45,10 +45,10 @@
                 <li class="nav-item">
                     <a href="@Url.Action("Salir", "Home")" class="btn btn-danger" asp-controller="Acceso" asp-action="Salir">
                         <i class="bi bi-box-arrow-right"></i>
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span>
-                                <strong>Salir</strong>
-                            </span>
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>
+                            <strong>Salir</strong>
+                        </span>
                     </a>
                 </li>
             </ul>
@@ -70,8 +70,8 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Content/PluginsJS")
-
-<script type="text/javascript">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
 
         $.extend({ MisUrls: { url: {}, urls: function (a) { $.extend($.MisUrls.url, a); } } });
 
@@ -158,7 +158,7 @@
 
         //CONTROLADOR REPORTE
         $.MisUrls.urls({ _ObtenerReporteProducto :'@Url.Action("ObtenerProducto", "Reporte")' });
-        $.MisUrls.urls({ _ObtenerReporteVenta: '@Url.Action("ObtenerVenta", "Reporte")' }); 
+        $.MisUrls.urls({ _ObtenerReporteVenta: '@Url.Action("ObtenerVenta", "Reporte")' });
 
 
        //CONTROLADOR DE HOME
@@ -176,7 +176,7 @@
 
 
 
-</script>
+    </script>
     <script>
 
         function activarMenu(menuactivo) {

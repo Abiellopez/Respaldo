@@ -8,7 +8,7 @@ namespace CapaModelo
 {
     public class Grafica
     {
-        public string mes { get; set; }
-        public int cantidad { get; set; }
+        public string FechaVenta { get; set; }
+        public string CantidadProductos { get; set; }
     }
 }

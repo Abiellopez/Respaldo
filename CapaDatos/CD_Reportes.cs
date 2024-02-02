@@ -14,7 +14,7 @@ namespace CapaDatos
     {
         public static CD_Reportes _instancia = null;
 
-        private CD_Reportes()
+        public CD_Reportes()
         {
 
         }
@@ -118,21 +118,11 @@ namespace CapaDatos
 
 
 
-
-
-
-
-
-
-
-
         public List<ReporteVenta> ReporteVenta(DateTime FechaInicio, DateTime FechaFin)
         {
             List<ReporteVenta> lista = new List<ReporteVenta>();
 
-            NumberFormatInfo formato = new CultureInfo("es-PE").NumberFormat;
-            formato.CurrencyGroupSeparator = ".";
-
+            
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 SqlCommand cmd = new SqlCommand("usp_rptVenta", oConexion);
@@ -155,8 +145,8 @@ namespace CapaDatos
                                 TipoDocumento = dr["Tipo Documento"].ToString(),
                                 NombreEmpleado = dr["Nombre Empleado"].ToString(),
                                 CantidadUnidadesVendidas = dr["Cantidad Unidades Vendidas"].ToString(),
-                                CantidadProductos = dr["Cantidad Productos"].ToString(),
-                                TotalVenta = Convert.ToDecimal(dr["Total Venta"].ToString(), new CultureInfo("es-PE")).ToString("N", formato)
+                                CantidadProductos = dr["Cantidad Productos"].ToString(),                         
+                                TotalVenta = dr["Total Venta"].ToString()
                             });
                         }
 
@@ -172,5 +162,53 @@ namespace CapaDatos
             return lista;
 
         }
+
+        public List<Grafica> ReporteGrafica()
+        {
+            List<Grafica> lista = new List<Grafica>();
+
+
+            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
+            {
+                SqlCommand cmd = new SqlCommand("usp_Grafica", oConexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                try
+                {
+                    oConexion.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new Grafica()
+                            {
+                                FechaVenta = dr["Fecha Venta"].ToString(),
+                                CantidadProductos = dr["Total"].ToString(),
+
+                            });
+                        }
+
+                    }
+
+                }
+                catch (Exception)
+                {
+                    lista = new List<Grafica>();
+                }
+            }
+
+            return lista;
+
+        }
+
+
+
+
+
+
+
+
+
     }
 }
