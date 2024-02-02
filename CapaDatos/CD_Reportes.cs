@@ -170,7 +170,7 @@ namespace CapaDatos
 
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
-                SqlCommand cmd = new SqlCommand("usp_Grafica", oConexion);
+                SqlCommand cmd = new SqlCommand("usp_grafica", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 try
@@ -183,8 +183,9 @@ namespace CapaDatos
                         {
                             lista.Add(new Grafica()
                             {
-                                FechaVenta = dr["Fecha Venta"].ToString(),
-                                CantidadProductos = dr["Total"].ToString(),
+                                FechaVenta = dr["Fecha"].ToString(),
+                                FechaMes = dr["Fecha mes"].ToString(),
+                                CantidadProductos = dr["CantidaTotal"].ToString(),
 
                             });
                         }

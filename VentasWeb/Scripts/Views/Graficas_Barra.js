@@ -10,18 +10,20 @@ function Grafica() {
 
 
             console.log(dataJson)
-                 const labels = dataJson.map((item) => { return item.FechaVenta })
+            const labels = dataJson.map((item) => { return item.FechaMes })
+         /*   const año = dataJson.map((item) => { return item.FechaVenta })*/
             const values = dataJson.map((item) => { return item.CantidadProductos })
 
             console.log(labels)
             console.log(values)
+           /* console.log(año)*/
 
 
             const data = {
                 labels: labels,
                 datasets: [{
-                    label: 'CantidadProductos',
-                    data: values,
+                    label: 'Cantidad de ventas',
+                    data: values, 
                     backgroundColor: 'rgb(54, 162, 235)',
                     borderWidth: 1
                 }]

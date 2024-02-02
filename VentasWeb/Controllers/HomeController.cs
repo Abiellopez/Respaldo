@@ -40,22 +40,9 @@ namespace VentasWeb.Controllers
 
         public JsonResult Grafica()
         {
-
+          
             List<Grafica> lista = CD_Reportes.Instancia.ReporteGrafica();
             return Json(lista, JsonRequestBehavior.AllowGet);
         }
-
-
-
-        //[HttpGet]
-        //public JsonResult Grafica()
-        //{
-        //    CD_Reportes Lista = new CD_Reportes();
-
-        //    List<ReporteVenta> objLista = Lista.ReporteGrafica();
-
-        //    return Json(objLista, JsonRequestBehavior.AllowGet);
-        //}
-
     }
 }
