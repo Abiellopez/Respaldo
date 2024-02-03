@@ -14,7 +14,7 @@ function readURL(input) {
                 .width(190)
                 .height(192);
         };
-
+   
         reader.readAsDataURL(input.files[0]);
     }
 }
@@ -265,7 +265,7 @@ function abrirPopUpForm(json) {
     if (json != null) {
 
         $("#txtid").val(json.IdProducto);
-        $("#imgProducto").attr({ "src": "data:image/jpg" + json.extension + ";base64," + json.base64 });
+        $("#imgProducto").attr({ "src": "data:image/" + json.extension + ";base64," + json.base64 });
         $("#txtCodigo").val(json.Codigo);
         $("#txtNombre").val(json.Nombre);
         $("#txtDescripcion").val(json.Descripcion);
@@ -303,6 +303,7 @@ function abrirPopUpForm(json) {
 
 function Guardar() {
     if ($("#form").valid()) {
+  
         var ImagenSeleccionada = ($("#fileProducto"))[0].files[0];
 
         var objeto = {
@@ -320,7 +321,7 @@ function Guardar() {
         var request = new FormData();
         request.append("imagenArchivo", ImagenSeleccionada);
         request.append("objeto", JSON.stringify(objeto));
-
+ 
 
         jQuery.ajax({
             url: $.MisUrls.url._GuardarProducto,
@@ -332,6 +333,7 @@ function Guardar() {
             success: function (data) {
 
                 if (data.resultado) {
+                    console.log(data)
                     tabladata.ajax.reload();
                     $('#FormModal').modal('hide');
 
