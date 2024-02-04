@@ -1,30 +1,58 @@
-﻿
+﻿3
 var tablaProducto;
 
 
-
-
-function readURL(input) {
+function readURL(input) {  
     if (input.files && input.files[0]) {
-        var reader = new FileReader();
+            var reader = new FileReader();
+            reader.onload = function (e) {
+               $('#imgProducto')
+                    .attr('src', e.target.result)
+                    .width(190)
+                    .height(192);
 
-        reader.onload = function (e) {
-            $('#imgProducto')
-                .attr('src', e.target.result)
-                .width(190)
-                .height(192);
-        };
+            };
+           
+    }
+    reader.readAsDataURL(input.files[0]);
    
+}
+
+
+$("#fileProducto").on("change", (e) => {
+        const archivo = $(e.target)[0].files[0];
+        let nombArchivo = archivo.name;
+        var extension = nombArchivo.split(".").slice(-1); extension = extension[0];
+        let extensiones = ["jpg", "png", "jpeg"];
+
+        if (extensiones.indexOf(extension) === -1) {
+            swal("Mensaje", "Extension de archivo no permitida", "warning")
+            $miInput.value = "";
+        }
+        else {
+            reader.readAsDataURL(input.files[0]);
+        }
+
+});
+
+const maxSize = 3000000;
+const $miInput = document.querySelector("#fileProducto");
+
+$miInput.addEventListener("change", function () {
+    const archivo = this.files[0];
+    if (archivo.size > maxSize) {
+        const tamanioEnMb = maxSize / 1000000;
+        alert(`El tamaño máximo es ${tamanioEnMb} MB`);
+        $miInput.value = "";
+    }
+    else {
         reader.readAsDataURL(input.files[0]);
     }
-}
+});
 
 
 $(document).ready(function () {
     activarMenu("Mantenedor");
-
-
-
 
 
     ////validamos el formulario
