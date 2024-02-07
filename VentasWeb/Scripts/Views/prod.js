@@ -1,4 +1,4 @@
-﻿3
+﻿
 var tablaProducto;
 
 
@@ -58,12 +58,12 @@ $(document).ready(function () {
     ////validamos el formulario
     $("#form").validate({
         rules: {
-            ImagenSeleccionada: "required",
+            
             Nombre: "required",
             Descripcion: "required"
         },
         messages: {
-            ImagenSeleccionada: "(*re)",
+   
             Nombre: "(*)",
             Descripcion: "(*)"
 
@@ -355,10 +355,16 @@ function Guardar() {
             url: $.MisUrls.url._GuardarProducto,
             type: "POST",
             data: request,
-
             processData: false,
             contentType: false,
             success: function (data) {
+
+                if ($("#fileProducto").val().trim() == "") {
+                    swal("Mensaje", "Agregue una imagen", "warning");
+                    console.log(error)
+                    return;
+
+                }
 
                 if (data.resultado) {
                     console.log(data)

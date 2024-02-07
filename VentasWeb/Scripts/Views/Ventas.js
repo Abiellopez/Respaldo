@@ -208,6 +208,7 @@ $("#txtproductocodigo").on('keypress', function (e) {
                             $("#txtproductodescripcion").val(item.oProducto.Descripcion);
                             $("#txtproductostock").val(item.Stock);
                             $("#txtproductoprecio").val(item.PrecioUnidadVenta);
+                            $("#imgProducto").attr({ "src": "data:image/" + item.oProducto.extension + ";base64," + item.oProducto.base64 });
                             encontrado = true;
                             return false;
                         }
@@ -222,6 +223,7 @@ $("#txtproductocodigo").on('keypress', function (e) {
                         $("#txtproductostock").val("");
                         $("#txtproductoprecio").val("");
                         $("#txtproductocantidad").val("0");
+                        $("#imgProducto").attr({ "src": "" });
 
                     }
                 }
@@ -295,10 +297,7 @@ $('#btnAgregar').on('click', function () {
                     .data("idproducto", parseInt($("#txtIdProducto").val()))
                     .data("cantidadproducto", parseInt($("#txtproductocantidad").val()))
                     .data("nombre", String($("#txtproductonombre").val()))
-                    .data("descripcion", String($("#txtproductodescripcion").val()))
-                    .data("imagen", String($("#imgProducto").val()))
-                    //.data("nombretalla", String($("#txtTallanombre").val()))
-                    //.data("nombrecolor", String($("#txtColornombre").val()))
+                    .data("descripcion", String($("#txtproductodescripcion").val()))              
                     .data("precio", parseInt($("#txtproductoprecio").val()))
                     .data("Stock", parseInt($("#txtproductostock").val()))
                     .data("Codigo", String($("#txtproductocodigo").val()))
@@ -323,7 +322,7 @@ $('#btnAgregar').on('click', function () {
         $("#imgProducto").attr({ "src": "" });
         $("#txtproductocodigo").focus();
 
-        calcularPrecios();
+   calcularPrecios();
     } else {
         swal("Mensaje", "El producto ya existe en la venta", "warning")
     }
@@ -347,7 +346,7 @@ $('#tbVenta tbody').on('click', 'button[class="btn btn-primary btn-sm"]', functi
     var cantidadproducto = $(this).data("cantidadproducto");
     var nombre = $(this).data("nombre");
     var descripcion = $(this).data("descripcion");
-    var Imagen = $(this).data("imagen");
+    var Imagen = $(this).data("Imagen");
     var precio = $(this).data("precio");
     let Stock = $(this).data("Stock");
    
@@ -362,6 +361,10 @@ $('#tbVenta tbody').on('click', 'button[class="btn btn-primary btn-sm"]', functi
     $("#txtproductostock").val(Stock);
     $("#txtproductoprecio").val(precio);
     $("#txtproductocantidad").val("");
+/*    $("#imgProducto").attr({ "src": Imagen });*/
+
+
+
     $("#txtproductocantidad").focus();
 
     calcularPrecios();

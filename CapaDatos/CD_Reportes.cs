@@ -53,6 +53,7 @@ namespace CapaDatos
                         while (dr.Read()) {
                             lista.Add(new ReporteProducto()
                             {
+                                IdProducto = Convert.ToInt32(dr["Id"].ToString()),
                                 NombreBodega = dr["Nombre Tienda"].ToString(),
                                 CodigoProducto = dr["Codigo Producto"].ToString(),
                                 NombreProducto = dr["Nombre Producto"].ToString(),
@@ -115,6 +116,37 @@ namespace CapaDatos
 
         }
 
+        public bool ModificarPrecioVenta(ReporteProducto oPromo)
+        {
+            bool respuesta = true;
+            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("usp_ModificarPrecio", oConexion);
+                    cmd.Parameters.AddWithValue("IdProduct", oPromo.IdProducto);
+                    cmd.Parameters.AddWithValue("Precio", oPromo.PrecioVenta);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    oConexion.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+
+                }
+                catch (Exception)
+                {
+                    respuesta = false;
+                }
+
+            }
+
+            return respuesta;
+
+        }
 
 
 

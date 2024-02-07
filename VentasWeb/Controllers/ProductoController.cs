@@ -80,14 +80,14 @@ namespace VentasWeb.Controllers
 
 
                     if (oProducto.IdProducto == 0)
-                {
+                     {
                     
                         int id = CD_Producto.Instancia.RegistrarProducto(oProducto);
                         oProducto.IdProducto = id;
                         oresponse.resultado = oProducto.IdProducto == 0 ? false : true;
 
 
-                }
+                   }
                 else
                 {
                     oresponse.resultado = CD_Producto.Instancia.ModificarProducto(oProducto);
@@ -97,18 +97,18 @@ namespace VentasWeb.Controllers
                     if (imagenArchivo != null && oProducto.IdProducto != 0)   
                    {
                     string extension = Path.GetExtension(imagenArchivo.FileName);
-                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".png")
-                    {
+                    //if (extension == ".jpg" || extension == ".jpeg" || extension == ".png")
+                    //{
 
                         GuardarEnRuta = Path.Combine(GuardarEnRuta, oProducto.IdProducto.ToString() + extension);
                         oProducto.NombreImagen = oProducto.IdProducto.ToString() + extension;
                         imagenArchivo.SaveAs(GuardarEnRuta);
                         oresponse.resultado = CD_Producto.Instancia.ActualizarRutaImagen(oProducto);
-                }
-                    else
-                    {
-                        oresponse.resultado = false;
-                    }
+                //}
+                //    else
+                //    {
+                //        oresponse.resultado = false;
+                //    }
             }
 
 

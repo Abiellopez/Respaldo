@@ -35,22 +35,112 @@ $(document).ready(function () {
 
 
 
-$('#btnBuscar').on('click', function () {
+//$('#btnBuscar').on('click', function () {
 
+//    tabladata = $('#tbReporte tbody').DataTable({
+//        "ajax": {
+//            "url": $.MisUrls.url._ObtenerProductos + "?idBodega=" + $("#cboTienda").val() + "&codigoproducto=" + $("#txtCodigoProducto").val(),
+//            "type": "GET",
+//            "datatype": "json"
+//        },
+
+//        "columns": [
+//            { "data": "NombreBodega" },
+//            { "data": "CodigoProducto" },
+//            { "data": "NombreProducto" },
+//            { "data": "Nombre" },
+//            { "data": "DescripcionProducto" },
+//            { "data": "NombreCategoria" },
+//            { "data": "NombreMarca" },
+//            { "data": "NombreEstilo" },
+//            { "data": "NombreTalla" },
+//            { "data": "NombreColor" },
+//            { "data": "StockenTienda" },
+//            { "data": "PrecioCompra" },
+//            { "data": "PrecioVenta" },
+//            {
+//                "data": "IdProducto", "render": function (data, type, row, meta) {
+//                    return "<button class='btn btn-primary  btn-sm' type='button' onclick='abrirPopUpForm(" + JSON.stringify(row) + ")'><i class='fas fa-pen'></i></button>"
+//                },
+//                "orderable": false,
+//                "searchable": false,
+//                "width": "90px"
+//            }
+
+//        ],
+//        "language": {
+//            "url": $.MisUrls.url.Url_datatable_spanish
+//        },
+//        responsive: true
+//    });
+
+//    //jQuery.ajax({
+//    //    url: $.MisUrls.url._ObtenerReporteProducto + "?idBodega=" + $("#cboTienda").val() + "&codigoproducto=" + $("#txtCodigoProducto").val(),
+
+//    //    type: "GET",
+//    //    dataType: "json",
+//    //    contentType: "application/json; charset=utf-8",
+//    //    success: function (data) {
+
+//    //        if (data != undefined && data != null) {
+
+
+//    //            $("#tbReporte tbody").html("");
+
+
+//    //            $.each(data, function (i, row) {
+//    //                console.log(data)
+//    //                $("<tr>").append(
+//    //                    $("<td>").text(row["NombreBodega"]),
+//    //                    $("<td>").text(row["CodigoProducto"]),
+//    //                    $("<td>").text(row["NombreProducto"]),
+//    //                    $("<td>").text(row["DescripcionProducto"]),
+//    //                    $("<td>").text(row["NombreCategoria"]),
+//    //                    $("<td>").text(row["NombreMarca"]),
+//    //                    $("<td>").text(row["NombreEstilo"]),
+//    //                    $("<td>").text(row["NombreTalla"]),
+//    //                    $("<td>").text(row["NombreColor"]),
+//    //                    $("<td>").text(row["StockenTienda"]),
+//    //                    $("<td>").text(row["PrecioCompra"]),
+//    //                    $("<td>").text(row["PrecioVenta"]),
+//    //                    $("<td>").text(row["IdProducto"]),
+
+
+//    //                    $("<td>").append(
+//    //                    $("<button><i class='fas fa-pen'></i></button>").addClass("btn btn-primary btn-sm")) ).appendTo("#tbReporte tbody");
+//    //            })
+//    //        }
+//    //    },
+//    //    error: function (error) {
+//    //        console.log(error)
+//    //    },
+//    //    beforeSend: function () {
+//    //    },
+//    //});
+
+//})
+
+
+
+
+
+$('#btnBuscar').on('click', function () {
     jQuery.ajax({
         url: $.MisUrls.url._ObtenerReporteProducto + "?idBodega=" + $("#cboTienda").val() + "&codigoproducto=" + $("#txtCodigoProducto").val(),
+        
         type: "GET",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         success: function (data) {
 
             if (data != undefined && data != null) {
+           
 
                 $("#tbReporte tbody").html("");
 
 
                 $.each(data, function (i, row) {
-
+                    console.log(data)
                     $("<tr>").append(
                         $("<td>").text(row["NombreBodega"]),
                         $("<td>").text(row["CodigoProducto"]),
@@ -64,13 +154,9 @@ $('#btnBuscar').on('click', function () {
                         $("<td>").text(row["StockenTienda"]),
                         $("<td>").text(row["PrecioCompra"]),
                         $("<td>").text(row["PrecioVenta"]),
+                        $("<td>").text(row["IdProducto"]),
                         $("<td>").append(
-                            $("<button><i class='fas fa-pen'></i></button>").addClass("btn btn-primary btn-sm")
-                                .data("idproducto", parseInt($("CodigoProducto").val()))    
-
-                        )
-
-                    ).appendTo("#tbReporte tbody");
+                        $("<button><i class='fas fa-pen'></i></button>").addClass("btn btn-primary btn-sm")) ).appendTo("#tbReporte tbody");
                 })
             }
         },
@@ -83,84 +169,44 @@ $('#btnBuscar').on('click', function () {
 
 })
 
+//{
+//    "data": "IdTalla", "render": function (data, type, row, meta) {
+//        return "<button class='btn btn-primary btn-sm' type='button' onclick='abrirPopUpForm(" + JSON.stringify(row) + ")'><i class='fas fa-pen'></i></button>" +
+//            "<button class='btn btn-danger btn-sm ml-2' type='button' onclick='eliminar(" + data + ")'><i class='fa fa-trash'></i></button>"
+//    },
 
-$('#tbReporte tbody').on('click', 'button[class="btn btn-primary btn-sm"]', function () {
+
+
+
+
+
+
+
+$('#tbReporte tbody').on('click', 'button[class="btn btn-primary btn-sm
+    "]', function () {
 
     abrirPopUpForm(" + JSON.stringify(row)+ ")
 
 
 })
 
-//$('#btnBuscar').on('click', function () {
-
-//    tabladata = $('#tbdata').DataTable({
-//        "ajax": {
-//            "url": $.MisUrls.url._ObtenerReporteProducto + "?idBodega=" + $("#cboTienda").val() + "&codigoproducto=" + $("#txtCodigoProducto").val(),
-//            "type": "GET",
-//            "datatype": "json",
-//        "success": function (data) {
-//            },
- 
-            
-
-//                    "columns": [
-//                        { "data": "NombreBodega" },
-//                        { "data": "CodigoProducto" },
-//                        { "data": "NombreProducto" },
-//                        { "data": "DescripcionProducto" },
-//                        { "data": "NombreCategoria" },
-//                        { "data": "NombreMarca" },
-//                        { "data": "NombreEstilo" },
-//                        { "data": "NombreColor" },
-//                        { "data": "StockenTienda" },
-//                        { "data": "PrecioCompra" },
-//                        { "data": "PrecioVenta" },
-
-//                        {
-//                            "data": "IdProducto", "render": function (data, type, row, meta) {
-//                                return "<button class='btn btn-primary btn-sm' type='button' onclick='abrirPopUpForm(" + JSON.stringify(row) + ")'><i class='fas fa-pen'></i></button>"
-//                            },
-//                            "orderable": false,
-//                            "searchable": false,
-//                            "width": "90px"
-//                        }
-
-//                    ],
-//                        "language": {
-//                        "url": $.MisUrls.url.Url_datatable_spanish
-//                    },
-//                    responsive: true
-//                });
-//            }
-//        },
-//        error: function (error) {
-//            console.log(error)
-//        },
-//        beforeSend: function () {
-//        },
-//    });
-
-//})
-
 
 
 
 function abrirPopUpForm(json) {
-
-    $("CodigoProducto").val(json.CodigoProducto);
-    $("PrecioVenta").val("0.00");
+    $("#txtid").val(json.IdProducto);
+    $("#txtPrecioVenta").val(json.PrecioVenta);
     $('#FormModal').modal('show');
 
 }
 
 function Guardar() {
 
-    if ($("#form").valid()) {
 
         var request = {
             objeto: {
-                CodigoProducto: parseInt($("#txtid").val()),
-                PrecioVentas: $("PrecioVenta").val()
+                IdProducto: parseInt($("#txtid").val()),
+                PrecioVenta: parseInt($("#txtPrecioVenta").val()),
             }
         }
 
@@ -189,8 +235,6 @@ function Guardar() {
         });
 
     }
-
-}
 
 
 

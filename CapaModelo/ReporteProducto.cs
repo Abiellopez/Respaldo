@@ -8,6 +8,7 @@ namespace CapaModelo
 {
     public class ReporteProducto
     {
+          public int IdProducto { get; set; }
         public string NombreBodega { get; set; }
         public string CodigoProducto { get; set; }
         public string NombreProducto { get; set; }
