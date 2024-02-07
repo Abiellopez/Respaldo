@@ -154,9 +154,7 @@ $('#btnBuscar').on('click', function () {
                         $("<td>").text(row["StockenTienda"]),
                         $("<td>").text(row["PrecioCompra"]),
                         $("<td>").text(row["PrecioVenta"]),
-                        $("<td>").text(row["IdProducto"]),
-                        $("<td>").append(
-                        $("<button><i class='fas fa-pen'></i></button>").addClass("btn btn-primary btn-sm")) ).appendTo("#tbReporte tbody");
+                        $("<td>").text(row["IdProducto"].append($("<button><i class='fas fa-pen'></i></button>").addClass("btn btn-primary btn-sm"))).appendTo("#tbReporte tbody")),
                 })
             }
         },
@@ -169,21 +167,10 @@ $('#btnBuscar').on('click', function () {
 
 })
 
-//{
-//    "data": "IdTalla", "render": function (data, type, row, meta) {
-//        return "<button class='btn btn-primary btn-sm' type='button' onclick='abrirPopUpForm(" + JSON.stringify(row) + ")'><i class='fas fa-pen'></i></button>" +
-//            "<button class='btn btn-danger btn-sm ml-2' type='button' onclick='eliminar(" + data + ")'><i class='fa fa-trash'></i></button>"
-//    },
 
 
 
-
-
-
-
-
-$('#tbReporte tbody').on('click', 'button[class="btn btn-primary btn-sm
-    "]', function () {
+$('#tbReporte tbody').on('click', 'button[class="btn btn-primary btn-sm"]', function () {
 
     abrirPopUpForm(" + JSON.stringify(row)+ ")
 
