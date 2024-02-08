@@ -116,6 +116,8 @@ namespace CapaDatos
 
         }
 
+
+
         public bool ModificarPrecioVenta(ReporteProducto oPromo)
         {
             bool respuesta = true;
