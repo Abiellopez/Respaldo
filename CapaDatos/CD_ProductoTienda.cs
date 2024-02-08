@@ -204,6 +204,39 @@ namespace CapaDatos
 
         }
 
+        public static DataTable ReporteProductoTiend(int IdBodega, string CodigoProducto)
+        {
+            List<ProductoTienda> lista = new List<ProductoTienda>();
+            DataTable dt = new DataTable();
+
+            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
+            {
+                SqlDataAdapter cmd = new SqlDataAdapter("usp_rptProductoTienda", oConexion);
+                cmd.SelectCommand.Parameters.AddWithValue("@IdBodega", IdBodega);
+                cmd.SelectCommand.Parameters.AddWithValue("@Codigo", CodigoProducto);
+                cmd.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                try
+                {    
+                    oConexion.Open();
+                    cmd.Fill(dt);
+                    return dt;
+
+                }
+                catch (Exception)
+                {
+                    lista = new List<ProductoTienda>();
+                }
+            }
+
+            return dt;
+        }
+
+
+
+
+
+
         public bool ControlarStock(int IdProducto, int Cantidad, bool Restar)
         {
             bool respuesta = true;

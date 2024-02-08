@@ -31,56 +31,6 @@ namespace CapaDatos
             }
         }
 
-        public List<ReporteProducto> ReporteProductoTienda(int IdBodega, string CodigoProducto)
-        {
-            List<ReporteProducto> lista = new List<ReporteProducto>();
-
-            NumberFormatInfo formato = new CultureInfo("es-PE").NumberFormat;
-            formato.CurrencyGroupSeparator = ".";
-
-            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
-            {
-                SqlCommand cmd = new SqlCommand("usp_rptProductoTienda", oConexion);
-                cmd.Parameters.AddWithValue("@IdBodega", IdBodega);
-                cmd.Parameters.AddWithValue("@Codigo", CodigoProducto);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                try
-                {
-                    oConexion.Open();
-                    
-                    using (SqlDataReader dr = cmd.ExecuteReader()) {
-                        while (dr.Read()) {
-                            lista.Add(new ReporteProducto()
-                            {
-                                IdProducto = Convert.ToInt32(dr["Id"].ToString()),
-                                NombreBodega = dr["Nombre Tienda"].ToString(),
-                                CodigoProducto = dr["Codigo Producto"].ToString(),
-                                NombreProducto = dr["Nombre Producto"].ToString(),
-                                DescripcionProducto = dr["Descripcion Producto"].ToString(),
-                                NombreCategoria = dr["DescripcionCategoria"].ToString(),
-                                NombreMarca = dr["DescripcionMarca"].ToString(),
-                                NombreEstilo = dr["NombreEstilo"].ToString(),
-                                NombreTalla = dr["DescripcionTalla"].ToString(),
-                                NombreColor = dr["DescripcionColor"].ToString(),
-                                StockenTienda = dr["Stock en tienda"].ToString(),
-                                PrecioCompra = Convert.ToDecimal(dr["Precio Compra"].ToString()).ToString("N", formato),
-                                PrecioVenta = Convert.ToDecimal(dr["Precio Venta"].ToString()).ToString("N", formato)
-                            });
-                        }
-
-                    }
-
-                }
-                catch (Exception)
-                {
-                    lista = new List<ReporteProducto>();
-                }
-            }
-
-            return lista;
-        }
-
 
 
         public bool ModificarProductoTienda(ProductoTienda oProductoTienda)
@@ -149,6 +99,95 @@ namespace CapaDatos
             return respuesta;
 
         }
+
+        public List<ReporteProducto> ReporteProductoTiend(int IdBodega, string CodigoProducto)
+        {
+            List<ReporteProducto> lista = new List<ReporteProducto>();
+
+            NumberFormatInfo formato = new CultureInfo("es-PE").NumberFormat;
+            formato.CurrencyGroupSeparator = ".";
+
+            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
+            {
+                SqlCommand cmd = new SqlCommand("usp_rptProductoTienda", oConexion);
+                cmd.Parameters.AddWithValue("@IdBodega", IdBodega);
+                cmd.Parameters.AddWithValue("@Codigo", CodigoProducto);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                try
+                {
+                    oConexion.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new ReporteProducto()
+                            {
+                                IdProducto = Convert.ToInt32(dr["Id"].ToString()),
+                                NombreBodega = dr["Nombre Tienda"].ToString(),
+                                CodigoProducto = dr["Codigo Producto"].ToString(),
+                                NombreProducto = dr["Nombre Producto"].ToString(),
+                                DescripcionProducto = dr["Descripcion Producto"].ToString(),
+                                NombreCategoria = dr["DescripcionCategoria"].ToString(),
+                                NombreMarca = dr["DescripcionMarca"].ToString(),
+                                NombreEstilo = dr["NombreEstilo"].ToString(),
+                                NombreTalla = dr["DescripcionTalla"].ToString(),
+                                NombreColor = dr["DescripcionColor"].ToString(),
+                                StockenTienda = dr["Stock en tienda"].ToString(),
+                                PrecioCompra = Convert.ToDecimal(dr["Precio Compra"].ToString()).ToString("N", formato),
+                                PrecioVenta = Convert.ToDecimal(dr["Precio Venta"].ToString()).ToString("N", formato)
+                            });
+                        }
+
+                    }
+
+                }
+                catch (Exception)
+                {
+                    lista = new List<ReporteProducto>();
+                }
+            }
+
+            return lista;
+        }
+
+
+
+
+
+
+        //public static DataTable ReporteProductoTienda(int IdBodega, string CodigoProducto)
+        //{
+        //    List<ReporteProducto> rptListaAl = new List<ReporteProducto>();
+        //    DataTable dt = new DataTable();
+        //    using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
+        //    {
+        //        SqlDataAdapter da = new SqlDataAdapter("usp_ReporteAlumno", oConexion);
+        //        da.SelectCommand.Parameters.AddWithValue("Nombres", Nombres);
+        //        da.SelectCommand.Parameters.AddWithValue("Apellidos", Apellidos);
+        //        da.SelectCommand.Parameters.AddWithValue("Codigo", Codigo);
+        //        da.SelectCommand.Parameters.AddWithValue("DocumentoIdentidad", DocumentoIdentidad);
+        //        da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+        //        try
+        //        {
+        //            oConexion.Open();
+        //            da.Fill(dt);
+        //            return dt;
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            return dt;
+        //        }
+        //    }
+        //}
+
+
+
+
+
+
 
 
 

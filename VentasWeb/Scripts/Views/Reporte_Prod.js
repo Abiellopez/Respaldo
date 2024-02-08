@@ -1,14 +1,6 @@
 ﻿
-
-
-
-$(document).ready(function () {
-  
-
-})
-
-
 var tabladata;
+
 $(document).ready(function () {
     activarMenu("Reportes");
 
@@ -54,139 +46,76 @@ $(document).ready(function () {
 
 })
 
-function Buscar() {
+
+
+
+ function Buscar() {
     jQuery.ajax({
-        url: $.MisUrls.url._ObtenerReporteProducto + "?idBodega=" + $("#cboTienda").val() + "&codigoproducto=" + $("#txtCodigoProducto").val(),
+        url: $.MisUrls.url._ObtenerReporte + "?idBodega=" + $("#cboTienda").val() + "&codigoproducto=" + $("#txtCodigoProducto").val(),
         type: "GET",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         success: function (data) {
-            if (data != null) {
-
-
+            if (data.data != null) {
+                var json = JSON.parse(data.data)
+                
+                
                 if ($.fn.DataTable.isDataTable('#tbdata')) {
                     $('#tbdata').DataTable().destroy();
                 }
+             console.log(data)
 
 
-                $('#tbdata').DataTable({
-                    responsive: true,
-                    data: json,
-                        "columns": [
+       $('#tbdata').DataTable({
+           responsive: true,
+           data: json,
+            columns: [
 
-            { "data": "NombreBodega" },
-            { "data": "CodigoProducto" },
-            { "data": "NombreProducto" },
-            { "data": "DescripcionProducto" },
-            { "data": "NombreCategoria" },
-            { "data": "NombreMarca" },
-            { "data": "NombreEstilo" },
-            { "data": "NombreTalla" },
-            { "data": "NombreColor" },
-            { "data": "StockenTienda" },
-            { "data": "PrecioCompra" },
-            { "data": "PrecioVenta" },
+                { "data": "Nombre Tienda" },
+                { "data": "Codigo Producto" },
+                { "data": "Nombre Producto" },
+                { "data": "Descripcion Producto" },
+                { "data": "DescripcionCategoria" },
+                { "data": "DescripcionMarca" },
+                { "data": "NombreEstilo" },
+                { "data": "DescripcionTalla" },
+                { "data": "DescripcionColor" },
+                { "data": "Stock en tienda" },
+                { "data": "Precio Compra" },
+                { "data": "PrecioVenta" },
             {
-                "data": "IdProducto", "render": function (data, type, row, meta) {
+                "data": "Id", "render": function (data, type, row, meta) {
                     return "<button class='btn btn-primary  btn-sm' type='button' onclick='abrirPopUpForm(" + JSON.stringify(row) + ")'><i class='fas fa-pen'></i></button>"
                 },
                 "orderable": false,
                 "searchable": false,
                 "width": "90px"
-            }
+            },
 
 
-        ],
-                    "scrollY": "300px",
-                    "scrollCollapse": true,
-                    "scrollX": true,
-                    "paging": false,
-                    dom: 'Bfrtip',
-                    buttons: [
-                        {
-                            extend: 'excelHtml5',
-                            title: 'Reporte_' + ObtenerFecha()
-                        },
-                        {
-                            extend: 'print'
-                        }
-                    ],
-                    "language": {
-                        "url": $.MisUrls.url.Url_datatable_spanish
-                    }
-                });
+           ],
+           "scrollY": "300px",
+           "scrollCollapse": true,
+           "scrollX": true,
+           "paging": false,
+           dom: 'Bfrtip',
+           "language": {
+               "url": $.MisUrls.url.Url_datatable_spanish
+           },
+       });
 
 
-
-            } else {
-                swal("Mensaje", "No se pudo eliminar el curso", "warning")
-            }
-        },
-        error: function (error) {
-            console.log(error)
-        },
-        beforeSend: function () {
-
+            } 
         },
     });
 
 }
 
-//$('#btnBuscar').on('click', function () {
-
-//    jQuery.ajax({
-//        url: $.MisUrls.url._ObtenerReporteProducto + "?idBodega=" + $("#cboTienda").val() + "&codigoproducto=" + $("#txtCodigoProducto").val(),
-//        type: "GET",
-//        dataType: "json",
-//        contentType: "application/json; charset=utf-8",
-//        success: function (data) {
-
-//            if (data != undefined && data != null) {
-
-//                $("#tbReporte tbody").html("");
-//                console.log(data)
-
-//                $.each(data, function (i, row) {
-
-//                    $("<tr>").append(
-//                        $("<td>").text(row["NombreBodega"]),
-//                        $("<td>").text(row["CodigoProducto"]),
-//                        $("<td>").text(row["NombreProducto"]),
-//                        $("<td>").text(row["DescripcionProducto"]),
-//                        $("<td>").text(row["NombreCategoria"]),
-//                        $("<td>").text(row["NombreMarca"]),
-//                        $("<td>").text(row["NombreEstilo"]),
-//                        $("<td>").text(row["NombreTalla"]),
-//                        $("<td>").text(row["NombreColor"]),
-//                        $("<td>").text(row["StockenTienda"]),
-//                        $("<td>").text(row["PrecioCompra"]),
-//                        $("<td>").text(row["PrecioVenta"]),
-//                        $("<tr>").append(
-//                        $("<button><i class='fas fa-pen'></i></button>").addClass("btn btn-primary btn-sm").on('click', 'button[class="btn btn-primary btn-sm"]', function (row) {
-//                        abrirPopUpForm(" + JSON.stringify(row)+ ") }),      
-
-//                    ).appendTo("#tbReporte tbody");
-//                })
-
-//            }
-//        },
-//        error: function (error) {
-//            console.log(error)
-//        },
-//        beforeSend: function () {
-//        },
-//    });
-
-//})
-
-
-
-
-
 
 
 function abrirPopUpForm(json) {
-    $("#txtid").val(json.IdProducto);
+  
+    $("#txtid").val(json.Id);
     $("#txtPrecioVenta").val(json.PrecioVenta);
     $('#FormModal').modal('show');
 
@@ -211,8 +140,9 @@ function Guardar() {
             success: function (data) {
 
                 if (data.resultado) {
-                    tabladata.ajax.reload();
+                 
                     $('#FormModal').modal('hide');
+                    tabladata.ajax.reload();
                 } else {
 
                     swal("Mensaje", "No se pudo guardar los cambios", "warning")
@@ -240,12 +170,12 @@ function Guardar() {
 
 function printData() {
 
-    if ($('#tbReporte tbody tr').length == 0) {
+    if ($('#tbdata').length == 0) {
         swal("Mensaje", "No existen datos para imprimir", "warning")
         return;
     }
 
-    var divToPrint = document.getElementById("tbReporte");
+    var divToPrint = document.getElementById("tbdata");
 
     var style = "<style>";
     style = style + "table {width: 100%;font: 17px Calibri;}";
@@ -262,154 +192,3 @@ function printData() {
     newWin.print();
     newWin.close();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//$(document).ready(function () {
-//    activarMenu("Reportes");
-   
-//    tabladata = $('#tbReporte').DataTable({
-//        "ajax": {
-//            "url": $.MisUrls.url._ObtenerReporteProducto,
-//            "type": "GET",
-//            "datatype": "json"
-         
-//        },
-
-       
-//        "columns": [
-          
-//            { "data": "NombreBodega" },
-//            { "data": "CodigoProducto" },
-//            { "data": "NombreProducto" },
-//            { "data": "DescripcionProducto" },
-//            { "data": "NombreCategoria" },
-//            { "data": "NombreMarca" },
-//            { "data": "NombreEstilo" },
-//            { "data": "NombreTalla" },
-//            { "data": "NombreColor" },
-//            { "data": "StockenTienda" },
-//            { "data": "PrecioCompra" },
-//            { "data": "PrecioVenta" },
-//            {
-//                "data": "IdProducto", "render": function (data, type, row, meta) {
-//                    return "<button class='btn btn-primary  btn-sm' type='button' onclick='abrirPopUpForm(" + JSON.stringify(row) + ")'><i class='fas fa-pen'></i></button>"
-//                },
-//                "orderable": false,
-//                "searchable": false,
-//                "width": "90px"
-//            }
-
-         
-//        ],
-//        "language": {
-//            "url": $.MisUrls.url.Url_datatable_spanish
-//        },
-     
-//        responsive: true
-//    });
-//    console.log(data)
-//})
-
-
-
-////$('#btnBuscar').on('click', function () {
-////    jQuery.ajax({
-////        url: $.MisUrls.url._ObtenerReporteProducto + "?idBodega=" + $("#cboTienda").val() + "&codigoproducto=" + $("#txtCodigoProducto").val(),
-        
-////        type: "GET",
-////        dataType: "json",
-////        contentType: "application/json; charset=utf-8",
-////        success: function (data) {
-
-////            if (data != undefined && data != null) {
-           
-
-////                $("#tbReporte tbody").html("");
-
-
-////                $.each(data, function (i, row) {
-////                    console.log(data)
-////                    $("<tr>").append(
-////                        $("<td>").text(row["NombreBodega"]),
-////                        $("<td>").text(row["CodigoProducto"]),
-////                        $("<td>").text(row["NombreProducto"]),
-////                        $("<td>").text(row["DescripcionProducto"]),
-////                        $("<td>").text(row["NombreCategoria"]),
-////                        $("<td>").text(row["NombreMarca"]),
-////                        $("<td>").text(row["NombreEstilo"]),
-////                        $("<td>").text(row["NombreTalla"]),
-////                        $("<td>").text(row["NombreColor"]),
-////                        $("<td>").text(row["StockenTienda"]),
-////                        $("<td>").text(row["PrecioCompra"]),
-////                        $("<td>").text(row["PrecioVenta"]),
-////                        $("<td>").append(
-////                            $("<button><i class='fas fa-pen'></i></button>").addClass("btn btn-primary btn-sm")
-////                                .data("idproducto", parseInt($("IdProducto").val()))
-////                        ),
-
-
-
-
-////                    ).appendTo("#tbReporte tbody");
-////                })
-////            }
-////        },
-////        error: function (error) {
-////            console.log(error)
-////        },
-////        beforeSend: function () {
-////        },
-////    });
-
-////})
-
-
-
-
-
-
-////function printData() {
-
-////    if ($('#tbReporte tbody tr').length == 0) {
-////        swal("Mensaje", "No existen datos para imprimir", "warning")
-////        return;
-////    }
-
-////    var divToPrint = document.getElementById("tbReporte");
-
-////    var style = "<style>";
-////    style = style + "table {width: 100%;font: 17px Calibri;}";
-////    style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
-////    style = style + "padding: 2px 3px;text-align: center;}";
-////    style = style + "</style>";
-
-////    newWin = window.open("");
-
-
-////    newWin.document.write(style);
-////    newWin.document.write("<h3>Reporte de productos por Bodega</h3>");
-////    newWin.document.write(divToPrint.outerHTML);
-////    newWin.print();
-////    newWin.close();
-////}
-
-
-
-
