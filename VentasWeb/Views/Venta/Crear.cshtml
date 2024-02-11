@@ -92,10 +92,19 @@
                             <div class="card-body p-3">
                                 <h6 class="card-title mb-1 text-info">Detalle cliente</h6>
                                 <div class="row">
+                                    <div class="col-sm-1">
+                                        <div class="form-group mb-0">
+                                            <label for="txtRazonSocialProveedor"  class="col-form-label col-form-label-sm">Documento</label>
+                                            <select class="form-control form-control-sm model" id="cboclientetipodocumento" name="Rol">
+                                                <option value="DUI">DUI</option>
+                                                <option value="RUC">RUC</option>                                    
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="col-sm-2">
                                         <div class="form-group mb-0">
-                                            <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Cedula: <span class="required">*</span> </label>
-                                            <input type="text" class="form-control form-control-sm model" readonly id="txtclientedocumento" name="RazonSocial" autocomplete="off">
+                                            <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">*:</label>
+                                            <input type="text" class="form-control form-control-sm model" id="txtclientedocumento" name="RazonSocial" autocomplete="off">
                                         </div>
                                     </div>
 
@@ -103,16 +112,16 @@
                                     <div class="col-sm-2">
                                         <div class="form-group mb-0">
                                             <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Nombres: <span class="required">*</span></label>
-                                            <input type="text" class="form-control form-control-sm model" readonly id="txtclientenombres" name="RazonSocial" autocomplete="off">
+                                            <input type="text" class="form-control form-control-sm model" id="txtclientenombres" name="RazonSocial" autocomplete="off">
                                         </div>
                                     </div>
 
 
 
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <div class="form-group mb-0">
                                             <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Direccion:</label>
-                                            <input type="text" class="form-control form-control-sm model" readonly id="txtclientedireccion" name="clientedireccion" autocomplete="off">
+                                            <input type="text" class="form-control form-control-sm model" id="txtclientedireccion" name="clientedireccion" autocomplete="off">
                                         </div>
                                     </div>
 
@@ -120,7 +129,7 @@
                                     <div class="col-sm-2">
                                         <div class="form-group mb-0">
                                             <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Telefono:</label>
-                                            <input type="text" class="form-control form-control-sm model" readonly id="txtclientetelefono" name="RazonSocial" autocomplete="off">
+                                            <input type="text" class="form-control form-control-sm model" id="txtclientetelefono" name="RazonSocial" autocomplete="off">
                                         </div>
                                     </div>
 
@@ -283,7 +292,7 @@
                                 <div class="col-sm-2">
                                     <div class="input-group input-group-sm mb-2">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Sub Total C/.</label>
+                                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Sub Total C$/.</label>
 
                                             <input id="txtsubtotal" readonly type="text" class="form-control" value="0">
                                         </div>
@@ -293,7 +302,7 @@
                                 <div class="col-sm-2">
                                     <div class="input-group input-group-sm mb-2">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">IVA C/.</label>
+                                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">IVA C$/.</label>
 
                                             <input id="txtigv" readonly type="text" class="form-control" value="0">
                                         </div>
@@ -302,7 +311,7 @@
                                 <div class="col-sm-2">
                                     <div class="input-group input-group-sm mb-2">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Total C/.</label>
+                                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Total C$/.</label>
                                             <input id="txttotal" readonly type="text" class="form-control" value="0">
                                         </div>
                                     </div>
@@ -311,7 +320,7 @@
                                 <div class="col-sm-2">
                                     <div class="input-group input-group-sm mb-2">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Descuento C/.</label>
+                                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Descuento C$/.</label>
                                             <select class="custom-select" id="txtDescuento">
                                                 <option value="0.00">0%</option>
                                                 <option value="0.05">5%</option>
@@ -325,7 +334,7 @@
                                 <div class="col-sm-2">
                                     <div class="input-group input-group-sm">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Monto Pago C/.</label>
+                                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Monto Pago C$/.</label>
 
                                             <input id="txtmontopago" type="text" class="form-control" autocomplete="off">
                                         </div>
@@ -339,7 +348,7 @@
                                 <div class="col-sm-2">
                                     <div class="input-group input-group-sm mb-2">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Cambio C/.</label>
+                                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Cambio C$/.</label>
                                             <input id="txtcambio" readonly type="text" class="form-control">
                                         </div>
                                     </div>

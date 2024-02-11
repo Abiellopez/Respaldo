@@ -162,8 +162,10 @@
         $.MisUrls.urls({ _GuardarRebaja: '@Url.Action("Guardar", "Reporte")' });
         $.MisUrls.urls({ _ObtenerReporte :'@Url.Action("ConsultaReporte", "Reporte")' });
 
-       //CONTROLADOR DE HOME
-       $.MisUrls.urls({ _ObtenerDatos :'@Url.Action("Grafica", "Home")' });
+       //CONTROLADOR DE HOME y Configuracion
+        $.MisUrls.urls({ _ObtenerDatos: '@Url.Action("Grafica", "Home")' });
+        $.MisUrls.urls({ _GuardarConfiguracion :'@Url.Action("Guardar", "Configuracion")' });
+        $.MisUrls.urls({ _ObtenerConfig :'@Url.Action("Obtener", "Configuracion")' });
 
 
         //CONTROLADOR CLIENTE

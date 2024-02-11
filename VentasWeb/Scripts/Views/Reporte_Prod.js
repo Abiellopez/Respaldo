@@ -33,7 +33,7 @@ $(document).ready(function () {
     });
 
 
-    $('#tbdata').DataTable({
+       $('#tbdata').DataTable({
         responsive: true,
         "scrollY": "300px",
         "scrollCollapse": true,
@@ -45,7 +45,6 @@ $(document).ready(function () {
     })
 
 })
-
 
 
 
@@ -63,10 +62,10 @@ $(document).ready(function () {
                 if ($.fn.DataTable.isDataTable('#tbdata')) {
                     $('#tbdata').DataTable().destroy();
                 }
-             console.log(data)
+  
 
 
-       $('#tbdata').DataTable({
+           $('#tbdata').DataTable({
            responsive: true,
            data: json,
             columns: [
@@ -112,7 +111,6 @@ $(document).ready(function () {
 }
 
 
-
 function abrirPopUpForm(json) {
   
     $("#txtid").val(json.Id);
@@ -130,7 +128,7 @@ function Guardar() {
                 PrecioVenta: parseInt($("#txtPrecioVenta").val()),
             }
         }
-
+    
         jQuery.ajax({
             url: $.MisUrls.url._GuardarRebaja,
             type: "POST",
@@ -140,9 +138,12 @@ function Guardar() {
             success: function (data) {
 
                 if (data.resultado) {
-                 
+                  
                     $('#FormModal').modal('hide');
-                    tabladata.ajax.reload();
+                    //var tabladata = $('#tbdata').DataTable();
+                    //var jsonData = json;
+                    //tabladata.ajax.reload(json);
+                    window.location.reload();
                 } else {
 
                     swal("Mensaje", "No se pudo guardar los cambios", "warning")
@@ -158,8 +159,24 @@ function Guardar() {
 
     }
 
+$.fn.inputFilter = function (inputFilter) {
+    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function () {
+        if (inputFilter(this.value)) {
+            this.oldValue = this.value;
+            this.oldSelectionStart = this.selectionStart;
+            this.oldSelectionEnd = this.selectionEnd;
+        } else if (this.hasOwnProperty("oldValue")) {
+            this.value = this.oldValue;
+            this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+        } else {
+            this.value = "";
+        }
+    });
+};
 
-
+$("#txtPrecioVenta").inputFilter(function (value) {
+    return /^-?\d*[.]?\d{0,2}$/.test(value);
+});
 
 
 

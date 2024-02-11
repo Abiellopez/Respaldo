@@ -301,6 +301,7 @@ $('#btnAgregar').on('click', function () {
                     .data("precio", parseInt($("#txtproductoprecio").val()))
                     .data("Stock", parseInt($("#txtproductostock").val()))
                     .data("Codigo", String($("#txtproductocodigo").val()))
+                    .data("Imagen", String($("#imgProducto").val()))
             ),
 
 
@@ -319,7 +320,8 @@ $('#btnAgregar').on('click', function () {
         $("#txtproductostock").val("");
         $("#txtproductoprecio").val("");
         $("#txtproductocantidad").val("0");
-        $("#imgProducto").attr({ "src": "" });
+        $("#imgProducto").attr({ "src": "data:image/" + data.oProducto.extension + ";base64," + daata.oProducto.base64 });
+       /* $("#imgProducto").attr({ "src": "" });*/
         $("#txtproductocodigo").focus();
 
    calcularPrecios();
@@ -361,9 +363,9 @@ $('#tbVenta tbody').on('click', 'button[class="btn btn-primary btn-sm"]', functi
     $("#txtproductostock").val(Stock);
     $("#txtproductoprecio").val(precio);
     $("#txtproductocantidad").val("");
-/*    $("#imgProducto").attr({ "src": Imagen });*/
+    $("#imgProducto").attr({ "src": Imagen });
 
-
+    console.log(Imagen)
 
     $("#txtproductocantidad").focus();
 
@@ -375,10 +377,10 @@ $('#tbVenta tbody').on('click', 'button[class="btn btn-primary btn-sm"]', functi
 $('#btnTerminarGuardarVenta').on('click', function () {
 
     //VALIDACIONES DE CLIENTE
-    if ($("#txtclientedocumento").val().trim() == "" || $("#txtclientenombres").val().trim() == "") {
-        swal("Mensaje", "Complete los datos del cliente", "warning");
-        return;
-    }
+    //if ($("#txtclientedocumento").val().trim() == "" || $("#txtclientenombres").val().trim() == "") {
+    //    swal("Mensaje", "Complete los datos del cliente", "warning");
+    //    return;
+    //}
     //VALIDACIONES DE PRODUCTOS
     if ($('#tbVenta tbody tr').length == 0) {
         swal("Mensaje", "Debe registrar minimo un producto en la venta", "warning");

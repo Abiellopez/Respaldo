@@ -345,11 +345,18 @@ function Guardar() {
             IdColor: $("#cboColor").val(),
             Activo: ($("#cboEstado").val() == "1" ? true : false)
         }
+        if ($("#fileProducto").val().trim() == "") {
+            swal("Mensaje", "Agregue una imagen", "warning");
+            console.log(error)
+            return;
 
+        }
+        else
+        { 
         var request = new FormData();
         request.append("imagenArchivo", ImagenSeleccionada);
         request.append("objeto", JSON.stringify(objeto));
- 
+        }
 
         jQuery.ajax({
             url: $.MisUrls.url._GuardarProducto,
@@ -358,13 +365,6 @@ function Guardar() {
             processData: false,
             contentType: false,
             success: function (data) {
-
-                if ($("#fileProducto").val().trim() == "") {
-                    swal("Mensaje", "Agregue una imagen", "warning");
-                    console.log(error)
-                    return;
-
-                }
 
                 if (data.resultado) {
                     console.log(data)

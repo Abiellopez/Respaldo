@@ -126,6 +126,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\ColorController.cs" />
     <Compile Include="Controllers\CompraController.cs" />
+    <Compile Include="Controllers\ConfiguracionController.cs" />
     <Compile Include="Controllers\EstiloController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -2015,6 +2016,7 @@
     <Content Include="Scripts\Views\Bodega_Crear.js" />
     <Content Include="Scripts\Views\Color_Crear.js" />
     <Content Include="Scripts\Views\Compra_Realizar.js" />
+    <Content Include="Scripts\Views\Configuracion.js" />
     <Content Include="Scripts\Views\Consultar_Ventas.js" />
     <Content Include="Scripts\Views\Estilo_Crear.js" />
     <Content Include="Scripts\Views\Graficas_Barra.js" />
@@ -2078,6 +2080,7 @@
     <Content Include="Views\Color\Crear.cshtml" />
     <Content Include="Views\Estilo\Crear.cshtml" />
     <Content Include="Views\Talla\Crear.cshtml" />
+    <Content Include="Views\Configuracion\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

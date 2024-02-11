@@ -91,11 +91,13 @@
             </div>
             <div class="modal-body">
                 <form id="form">
-                    <input id="txtid" name="ID" value="0" type="hidden" />
-                    <div class="form-group">
-                        <label for="txtPrecioVenta" class="col-form-label">Rebajas: <span class="error"></span></label>
-                        <input type="text" class="form-control form-control-sm model" id="txtPrecioVenta" name="PrecioVenta">
-                    </div>
+                    <input id="txtid" name="ID" value="0" type="hidden" />                 
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Promociones:</label>                        
+                                <input type="text" class="form-control" id="txtPrecioVenta" name="PrecioVenta" autocomplete="off">
+                            </div>
+                        </div>
                 </form>
             </div>
             <div class="modal-footer">
