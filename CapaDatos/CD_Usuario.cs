@@ -96,7 +96,7 @@ namespace CapaDatos
                                                    {
                                                        Descripcion = dato.Element("Descripcion").Value
                                                    }).FirstOrDefault();
-
+                                try { 
 
                                 rptUsuario.oListaMenu = (from menu in doc.Element("Usuario").Element("DetalleMenu").Elements("Menu")
                                                          select new Menu()
@@ -114,8 +114,22 @@ namespace CapaDatos
 
                                                                          }).ToList()
 
+                                      
                                                          }).ToList();
-                            }
+
+                                }
+                                catch (Exception T)
+                                {
+                                    bool c = false;
+                                   dr.Close();
+                                    return rptUsuario;
+
+                                }
+
+
+
+
+                                }
                             else
                             {
                                 rptUsuario = null;

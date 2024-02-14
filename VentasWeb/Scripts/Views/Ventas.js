@@ -160,7 +160,7 @@ $('#btnBuscarCliente').on('click', function () {
 
     $('#modalCliente').modal('show');
 })
-
+var imagenDireccion = "";
 function productoSelect(json) {
     $("#txtIdProducto").val(json.oProducto.IdProducto);
     $("#txtproductocodigo").val(json.oProducto.Codigo);
@@ -170,6 +170,7 @@ function productoSelect(json) {
     $("#txtproductoprecio").val(json.PrecioUnidadVenta);
     $("#txtproductocantidad").val("0");
     $("#imgProducto").attr({ "src": "data:image/" + json.oProducto.extension + ";base64," + json.oProducto.base64 });
+    imagenDireccion = "data:image/" + json.oProducto.extension + ";base64," + json.oProducto.base64;
     $('#modalProducto').modal('hide');
 }
 
@@ -182,6 +183,7 @@ function clienteSelect(json) {
     $("#txtclientetelefono").val(json.Telefono);
     $('#modalCliente').modal('hide');
 }
+
 
 $("#txtproductocodigo").on('keypress', function (e) {
 
@@ -209,6 +211,7 @@ $("#txtproductocodigo").on('keypress', function (e) {
                             $("#txtproductostock").val(item.Stock);
                             $("#txtproductoprecio").val(item.PrecioUnidadVenta);
                             $("#imgProducto").attr({ "src": "data:image/" + item.oProducto.extension + ";base64," + item.oProducto.base64 });
+                            imagenDireccion = "data:image/" + item.oProducto.extension + ";base64," + item.oProducto.base64;
                             encontrado = true;
                             return false;
                         }
@@ -297,11 +300,12 @@ $('#btnAgregar').on('click', function () {
                     .data("idproducto", parseInt($("#txtIdProducto").val()))
                     .data("cantidadproducto", parseInt($("#txtproductocantidad").val()))
                     .data("nombre", String($("#txtproductonombre").val()))
-                    .data("descripcion", String($("#txtproductodescripcion").val()))              
+                    .data("descripcion", String($("#txtproductodescripcion").val()))
                     .data("precio", parseInt($("#txtproductoprecio").val()))
                     .data("Stock", parseInt($("#txtproductostock").val()))
                     .data("Codigo", String($("#txtproductocodigo").val()))
                     .data("Imagen", String($("#imgProducto").val()))
+                .data("Imagen", String($("#imgProducto").val()))
             ),
 
 
@@ -320,8 +324,8 @@ $('#btnAgregar').on('click', function () {
         $("#txtproductostock").val("");
         $("#txtproductoprecio").val("");
         $("#txtproductocantidad").val("0");
-        $("#imgProducto").attr({ "src": "data:image/" + data.oProducto.extension + ";base64," + daata.oProducto.base64 });
-       /* $("#imgProducto").attr({ "src": "" });*/
+       
+        $("#imgProducto").attr({ "src": "" });
         $("#txtproductocodigo").focus();
 
    calcularPrecios();
@@ -351,7 +355,8 @@ $('#tbVenta tbody').on('click', 'button[class="btn btn-primary btn-sm"]', functi
     var Imagen = $(this).data("Imagen");
     var precio = $(this).data("precio");
     let Stock = $(this).data("Stock");
-   
+
+    console.log(nombre);
 
     controlarStock(idproducto, cantidadproducto, false);
     $(this).parents("tr").remove();
@@ -363,7 +368,9 @@ $('#tbVenta tbody').on('click', 'button[class="btn btn-primary btn-sm"]', functi
     $("#txtproductostock").val(Stock);
     $("#txtproductoprecio").val(precio);
     $("#txtproductocantidad").val("");
-    $("#imgProducto").attr({ "src": Imagen });
+    imagenDireccion = "data:image/" + item.oProducto.extension + ";base64," + item.oProducto.base64;
+   /* $("#imgProducto").attr({ "src": "data:image/" + data.oProducto.extension + ";base64," + data.oProducto.base64 });*/
+    $("#imgProducto").attr({ "src": imagenDireccion});
 
     console.log(Imagen)
 

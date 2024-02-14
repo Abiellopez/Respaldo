@@ -59,7 +59,7 @@ $(document).ready(function () {
             {
                 "data": "TotalCosto", render: function (data) {
 
-                    return "C./ " + (data).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+                    return "C$./ " + (data).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
                 }
             },
             {
@@ -90,23 +90,6 @@ $(document).ready(function () {
 
 
 });
-
-
-
-//if (row.oEstadoPrestamo.IdEstadoPrestamo != 1) {
-//    return $("<button>").addClass("btn btn-info btn-detalle btn-sm").append(
-//        $("<i>").addClass("far fa-eye")
-//    ).attr({ "data-informacion": JSON.stringify(row) })[0].outerHTML
-//} else {
-//    return $("<button>").addClass("btn btn-primary btn-devolver btn-sm").append(
-//        $("<i>").addClass("fas fa-undo-alt")
-//    ).attr({ "data-informacion": JSON.stringify(row) })[0].outerHTML
-//}
-
-
-
-
-
 
 
 

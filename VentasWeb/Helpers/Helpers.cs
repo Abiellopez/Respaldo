@@ -23,7 +23,7 @@ namespace VentasWeb.Helpers
 
                 Usuario rptUsuario = CD_Usuario.Instancia.ObtenerDetalleUsuario(oUsuario.IdUsuario);
 
-
+                if (rptUsuario.oListaMenu !=  null) { 
                 foreach (Menu item in rptUsuario.oListaMenu)
                 {
                     sb.AppendLine("<li class='nav-item dropdown'>");
@@ -41,7 +41,7 @@ namespace VentasWeb.Helpers
 
                     sb.AppendLine("</li>");
                 }
-
+                }
 
             }
 

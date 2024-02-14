@@ -157,6 +157,8 @@ $(document).ready(function () {
         $('#modalTienda').modal('hide');
     }
 
+
+
     function productoSelect(json) {
         $("#txtIdProducto").val(json.IdProducto);
         $("#txtCodigoProducto").val(json.Codigo);
