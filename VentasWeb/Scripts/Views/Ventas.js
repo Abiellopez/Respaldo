@@ -323,7 +323,7 @@ $('#btnAgregar').on('click', function () {
         $("#txtproductostock").val("");
         $("#txtproductoprecio").val("");
         $("#txtproductocantidad").val("0");  
-        $("#imgProducto").attr({ "src": imagenDireccion });
+        $("#imgProducto").attr({ "src": "" });
         $("#txtproductocodigo").focus();
 
    calcularPrecios();

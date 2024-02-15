@@ -26,7 +26,7 @@ namespace VentasWeb.Controllers
 
         public JsonResult ObtenerProducto(int idBodega, string codigoproducto)
         {
-            List<ReporteProducto> lista = CD_Reportes.Instancia.ReporteProductoTiend(idBodega, codigoproducto);
+            List<ReporteProducto> lista = CD_Reportes.Instancia.ReporteProductoTienda(idBodega, codigoproducto);
             return Json(lista, JsonRequestBehavior.AllowGet);
         }
 
@@ -45,34 +45,34 @@ namespace VentasWeb.Controllers
             return Json(new { resultado = respuesta }, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
-        public JsonResult ConsultaReporte(int idBodega, string codigoproducto)
-        {
+        //[HttpGet]
+        //public JsonResult ConsultaReporte(int idBodega, string codigoproducto)
+        //{
 
-            DataTable dt = new DataTable();
+        //    DataTable dt = new DataTable();
 
-            dt = CD_ProductoTienda.ReporteProductoTiend(idBodega, codigoproducto);
+        //    dt = CD_ProductoTienda.ReporteProductoTiend(idBodega, codigoproducto);
 
-            return Json(new { data = DataTableToJSONWithJavaScriptSerializer(dt) }, JsonRequestBehavior.AllowGet);
+        //    return Json(new { data = DataTableToJSONWithJavaScriptSerializer(dt) }, JsonRequestBehavior.AllowGet);
 
-        }
+        //}
 
-        public string DataTableToJSONWithJavaScriptSerializer(DataTable table)
-        {
-            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
-            List<Dictionary<string, object>> parentRow = new List<Dictionary<string, object>>();
-            Dictionary<string, object> childRow;
-            foreach (DataRow row in table.Rows)
-            {
-                childRow = new Dictionary<string, object>();
-                foreach (DataColumn col in table.Columns)
-                {
-                    childRow.Add(col.ColumnName, row[col]);
-                }
-                parentRow.Add(childRow);
-            }
-            return jsSerializer.Serialize(parentRow);
-        }
+        //public string DataTableToJSONWithJavaScriptSerializer(DataTable table)
+        //{
+        //    JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+        //    List<Dictionary<string, object>> parentRow = new List<Dictionary<string, object>>();
+        //    Dictionary<string, object> childRow;
+        //    foreach (DataRow row in table.Rows)
+        //    {
+        //        childRow = new Dictionary<string, object>();
+        //        foreach (DataColumn col in table.Columns)
+        //        {
+        //            childRow.Add(col.ColumnName, row[col]);
+        //        }
+        //        parentRow.Add(childRow);
+        //    }
+        //    return jsSerializer.Serialize(parentRow);
+        //}
 
 
     }
