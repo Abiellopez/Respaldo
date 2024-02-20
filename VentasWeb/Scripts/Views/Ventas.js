@@ -384,11 +384,7 @@ $(document).on('click', 'button[class="btn btn-primary btn-sm"]', function () {
 
 $('#btnTerminarGuardarVenta').on('click', function () {
 
-    //VALIDACIONES DE CLIENTE
-    //if ($("#txtclientedocumento").val().trim() == "" || $("#txtclientenombres").val().trim() == "") {
-    //    swal("Mensaje", "Complete los datos del cliente", "warning");
-    //    return;
-    //}
+
     //VALIDACIONES DE PRODUCTOS
     if ($('#tbVenta tbody tr').length == 0) {
         swal("Mensaje", "Debe registrar minimo un producto en la venta", "warning");
@@ -440,7 +436,6 @@ $('#btnTerminarGuardarVenta').on('click', function () {
         "<CantidadProducto>" + $('#tbVenta tbody tr').length + "</CantidadProducto>" +
         "<CantidadTotal>" + $totalproductos + "</CantidadTotal>" +
         "<TotalCosto>" + $totalimportes + "</TotalCosto>" +
-        "<IVA>" + $("#txtigv").val() + "</IVA>" +
         "<Descuento>" + $("#txtDescuento").val() + "</Descuento>" +
         "<ImporteRecibido>" + $("#txtmontopago").val() + "</ImporteRecibido>" +
         "<ImporteCambio>" + $("#txtcambio").val() + "</ImporteCambio>" +
@@ -478,10 +473,10 @@ $('#btnTerminarGuardarVenta').on('click', function () {
 
                 //CLIENTE
                 $("#cboclientetipodocumento").val("DUI");
-                $("#txtclientedocumento").val("");
-                $("#txtclientenombres").val("");
-                $("#txtclientedireccion").val("");
-                $("#txtclientetelefono").val("");
+                $("#txtclientedocumento").val("Generico");
+                $("#txtclientenombres").val("Generico");
+                $("#txtclientedireccion").val("Generico");
+                $("#txtclientetelefono").val("0");
 
 
                 //PRODUCTO
@@ -495,7 +490,6 @@ $('#btnTerminarGuardarVenta').on('click', function () {
 
                 //PRECIOS
                 $("#txtsubtotal").val("0");
-                $("#txtigv").val("0");
                 $("#txtDescuento").val("0.00");
                 $("#txttotal").val("0");
                 $("#txtmontopago").val("");
@@ -546,21 +540,13 @@ $('#btncalcular').on('click', function () {
 
 
 function calcularPrecios() {
-    var subtotal = 0;
-    var igv = 0;
-    var Descuento = 0;
     var sumatotal = 0;
     $('#tbVenta > tbody  > tr').each(function (index, tr) {
         var fila = tr;
         var importetotal = parseFloat($(fila).find("td.importetotal").text());
         sumatotal = sumatotal + importetotal;
     });
-    igv = sumatotal * 0.15;
-    subtotal = sumatotal - igv;
-    Descuento = sumatotal - (sumatotal * Descuento);
-
-    $("#txtsubtotal").val(subtotal.toFixed(2));
-    $("#txtigv").val(igv.toFixed(2));
+ 
     $("#txttotal").val(sumatotal.toFixed(2));
 }
 

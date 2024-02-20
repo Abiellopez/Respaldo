@@ -1,9 +1,11 @@
 ﻿using CapaDatos;
 using CapaModelo;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace VentasWeb.Controllers
@@ -21,7 +23,7 @@ namespace VentasWeb.Controllers
             try
             {
                 ViewBag.NombreUsuario = SesionUsuario.Nombres + " " + SesionUsuario.Apellidos;
-                //ViewBag.RolUsuario = SesionUsuario.oRol.Descripcion;
+                ViewBag.RolUsuario = SesionUsuario.oRol.Descripcion;
 
             }
             catch {
@@ -37,12 +39,26 @@ namespace VentasWeb.Controllers
             Session["Usuario"] = null;
             return RedirectToAction("Index", "Login");
         }
-
-        public JsonResult Grafica()
+        public JsonResult resumen()
         {
+
+            List<RetornarVentas> Lista = CD_Reportes.Instancia.Retornar();        
+            return Json(Lista, JsonRequestBehavior.AllowGet);
+
+        }
+ 
+        //public JsonResult Grafica()
+        //{
           
-            List<Grafica> lista = CD_Reportes.Instancia.ReporteGrafica();
+        //    List<Grafica> lista = CD_Reportes.Instancia.ReporteGrafica();
+        //    return Json(lista, JsonRequestBehavior.AllowGet);
+        //}
+        public JsonResult GraficaPastel()
+        {
+
+            List<GraficaPastel> lista = CD_Reportes.Instancia.ReporteGraficaPastel();
             return Json(lista, JsonRequestBehavior.AllowGet);
         }
+
     }
 }

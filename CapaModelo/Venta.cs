@@ -23,8 +23,6 @@ namespace CapaModelo
         public float ImporteRecibido { get; set; }
         public string TextoImporteRecibido { get; set; }
         public float ImporteCambio { get; set; }
-        public float IVA { get; set; }
-        public string TextoIVA { get; set; }
         public float Descuento { get; set; }
         public string TextoImporteCambio { get; set; }
         public string TextoDescuento { get; set; }

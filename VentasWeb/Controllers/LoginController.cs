@@ -3,6 +3,7 @@ using CapaModelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using VentasWeb.Utilidades;
@@ -25,7 +26,7 @@ namespace VentasWeb.Controllers
 
             if (ousuario == null)
             {
-                ViewBag.Error = "Usuario o contraseña no correcta";
+                ViewBag.error = "Usuario o contraseña no correcta";
                 return View();
             }
 
@@ -34,4 +35,9 @@ namespace VentasWeb.Controllers
             return RedirectToAction("Index", "Home");
         }
     }
+
+
+
 }
+
+

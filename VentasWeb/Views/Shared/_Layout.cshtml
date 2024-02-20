@@ -164,9 +164,10 @@
 
        //CONTROLADOR DE HOME y Configuracion
         $.MisUrls.urls({ _ObtenerDatos: '@Url.Action("Grafica", "Home")' });
+        $.MisUrls.urls({ _ObtenerDatosChart: '@Url.Action("GraficaPastel", "Home")' });
         $.MisUrls.urls({ _GuardarConfiguracion :'@Url.Action("Guardar", "Configuracion")' });
         $.MisUrls.urls({ _ObtenerConfig :'@Url.Action("Obtener", "Configuracion")' });
-
+        $.MisUrls.urls({ _Resumen: '@Url.Action("resumen", "Home")' });
 
         //CONTROLADOR CLIENTE
         $.MisUrls.urls({ _ObtenerClientes: '@Url.Action("Obtener", "Cliente")' });

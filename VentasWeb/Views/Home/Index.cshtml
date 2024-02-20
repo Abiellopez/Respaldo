@@ -3,36 +3,61 @@
 
     ViewBag.Title = "Home Page";
 }
+@*<div class="col-sm-10">
 
+    <div class="card">
+        <div class="card-header text-center">
+            Productos mayor vendidos
+        </div>
+        <div class="card-body">
+            <canvas id="chart" style="max-height:250px"></canvas>
+        </div>
+    </div>
+
+</div>*@
 <div class="jumbotron">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-2">
             <h1>Bienvenido</h1>
 
             <p class="lead">@ViewBag.NombreUsuario</p>
-            @*<p class="lead">ROL: @ViewBag.RolUsuario</p>*@
+            <p class="lead">ROL: @ViewBag.RolUsuario</p>
 
 
         </div>
 
-        <div class="col-md-7">
- 
+        <div class="col-md-6">
 
-                    <div class="card border-dark mb-2">
-                        <div class="card-header bg-dark text-white text-center">
-                            Ventas de los ultimos 3 meses
-                        </div>
-                        <div class="card-body">
-                            <canvas id="chartVentas" style="max-height:350px"></canvas>
 
-                        </div>
-                    </div>
+            <div class="card">
+                <div class="card-header text-center">
+                    Ventas de los ultimos 5 dias
+                </div>
+                <div class="card-body">
+                    <canvas id="chart" style="max-height:250px"></canvas>
 
+                </div>
             </div>
+
         </div>
- 
+
+        <div class="col-sm-4">
+
+            <div class="card">
+                <div class="card-header text-center">
+                    Productos mayor vendidos
+                </div>
+                <div class="card-body">
+                    <canvas id="chartProductos" style="max-height:250px"></canvas>
+                </div>
+            </div>
+
+        </div>
 
     </div>
+
+
+</div>
 
 @section scripts{
     <script src="@Url.Content("~/Scripts/Views/Home_Index.js")" type="text/javascript"></script>

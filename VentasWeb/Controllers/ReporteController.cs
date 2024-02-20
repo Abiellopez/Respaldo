@@ -38,12 +38,12 @@ namespace VentasWeb.Controllers
             return Json(lista, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult Guardar(ReporteProducto objeto)
-        {
-            bool respuesta = false;
-            respuesta = CD_Reportes.Instancia.ModificarPrecioVenta(objeto);     
-            return Json(new { resultado = respuesta }, JsonRequestBehavior.AllowGet);
-        }
+        //public JsonResult Guardar(ReporteProducto objeto)
+        //{
+        //    bool respuesta = false;
+        //    respuesta = CD_Reportes.Instancia.ModificarPrecioVenta(objeto);     
+        //    return Json(new { resultado = respuesta }, JsonRequestBehavior.AllowGet);
+        //}
 
         //[HttpGet]
         //public JsonResult ConsultaReporte(int idBodega, string codigoproducto)

@@ -51,6 +51,7 @@
     <Compile Include="DetalleVenta.cs" />
     <Compile Include="Estilo.cs" />
     <Compile Include="Grafica.cs" />
+    <Compile Include="GraficaPastel.cs" />
     <Compile Include="Marca.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Permisos.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="ReporteProducto.cs" />
     <Compile Include="ReporteVenta.cs" />
     <Compile Include="Respuesta.cs" />
+    <Compile Include="RetornarVentas.cs" />
     <Compile Include="Rol.cs" />
     <Compile Include="SubMenu.cs" />
     <Compile Include="Talla.cs" />

@@ -94,17 +94,18 @@
                                 <div class="row">
                                     <div class="col-sm-1">
                                         <div class="form-group mb-0">
-                                            <label for="txtRazonSocialProveedor"  class="col-form-label col-form-label-sm">Documento</label>
+                                            <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Documento</label>
                                             <select class="form-control form-control-sm model" id="cboclientetipodocumento" name="Rol">
                                                 <option value="DUI">DUI</option>
-                                                <option value="RUC">RUC</option>                                    
+                                                <option value="RUC">RUC</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="form-group mb-0">
                                             <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">*:</label>
-                                            <input type="text" class="form-control form-control-sm model" id="txtclientedocumento" name="RazonSocial" autocomplete="off">
+                                            <input type="text" class="form-control form-control-sm model" value="Generico" id="txtclientedocumento" name="RazonSocial" autocomplete="off">
+
                                         </div>
                                     </div>
 
@@ -112,7 +113,7 @@
                                     <div class="col-sm-2">
                                         <div class="form-group mb-0">
                                             <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Nombres: <span class="required">*</span></label>
-                                            <input type="text" class="form-control form-control-sm model" id="txtclientenombres" name="RazonSocial" autocomplete="off">
+                                            <input type="text" class="form-control form-control-sm model" value="Generico" id="txtclientenombres" name="RazonSocial" autocomplete="off">
                                         </div>
                                     </div>
 
@@ -121,7 +122,7 @@
                                     <div class="col-sm-2">
                                         <div class="form-group mb-0">
                                             <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Direccion:</label>
-                                            <input type="text" class="form-control form-control-sm model" id="txtclientedireccion" name="clientedireccion" autocomplete="off">
+                                            <input type="text" class="form-control form-control-sm model" id="txtclientedireccion" value="Generico" name="clientedireccion" autocomplete="off">
                                         </div>
                                     </div>
 
@@ -129,7 +130,7 @@
                                     <div class="col-sm-2">
                                         <div class="form-group mb-0">
                                             <label for="txtRazonSocialProveedor" class="col-form-label col-form-label-sm">Telefono:</label>
-                                            <input type="text" class="form-control form-control-sm model" id="txtclientetelefono" name="RazonSocial" autocomplete="off">
+                                            <input type="text" class="form-control form-control-sm model" value="0" id="txtclientetelefono" name="RazonSocial" autocomplete="off">
                                         </div>
                                     </div>
 
@@ -281,89 +282,66 @@
 
                 <hr />
 
-                   
-                    <div class="row">
-                        <div class="col-sm-12">
+
+                <div class="row">
+                    <div class="col-sm-12">
 
 
 
 
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <div class="input-group input-group-sm mb-2">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Sub Total C$/.</label>
-
-                                            <input id="txtsubtotal" readonly type="text" class="form-control" value="0">
-                                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Total C$/.</label>
+                                        <input id="txttotal" readonly type="text" class="form-control" value="0">
                                     </div>
                                 </div>
-
-                                <div class="col-sm-2">
-                                    <div class="input-group input-group-sm mb-2">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">IVA C$/.</label>
-
-                                            <input id="txtigv" readonly type="text" class="form-control" value="0">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <div class="input-group input-group-sm mb-2">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Total C$/.</label>
-                                            <input id="txttotal" readonly type="text" class="form-control" value="0">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-2">
-                                    <div class="input-group input-group-sm mb-2">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Descuento C$/.</label>
-                                            <select class="custom-select" id="txtDescuento">
-                                                <option value="0.00">0%</option>
-                                                <option value="0.05">5%</option>
-                                                <option value="0.10">10%</option>
-                                                <option value="0.15">15%</option>
-                                            </select>
-                                        </div>                                      
-                                    </div>
-                                    </div>
-
-                                <div class="col-sm-2">
-                                    <div class="input-group input-group-sm">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Monto Pago C$/.</label>
-
-                                            <input id="txtmontopago" type="text" class="form-control" autocomplete="off">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-2">
-                                    <button id="btncalcular" type="button" class="btn btn-sm btn-danger btn-block"><i class="fas fa-dollar-sign"></i>  Calcular</button>
-                                </div>
-
-                                <div class="col-sm-2">
-                                    <div class="input-group input-group-sm mb-2">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Cambio C$/.</label>
-                                            <input id="txtcambio" readonly type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
 
+                            <div class="col-sm-2">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text bg-info text-white">Descuento C$/.</label>
+                                           <input class="form-control-sm" type="number" id="txtDescuento" value="0.00" data-decimals="2" min="0" max="1" step="0.01" />
+                     
+                                    </div>
+                                </div>
                             </div>
+
+                            <div class="col-sm-3">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Monto Pago C$/.</label>
+
+                                        <input id="txtmontopago" type="text" class="form-control" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <button id="btncalcular" type="button" class="btn btn-sm btn-danger btn-block"><i class="fas fa-dollar-sign"></i>  Calcular</button>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text bg-info text-white" for="inputGroupSelect01">Cambio C$/.</label>
+                                        <input id="txtcambio" readonly type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-              
+
+                    </div>
+                </div>
+
             </div>
-         </div> 
+        </div>
     </div>
-  </div>
-   
+</div>
+
 
 
 
@@ -402,4 +380,8 @@
 @section scripts{
 
     <script src="@Url.Content("~/Scripts/Views/Ventas.js")" type="text/javascript"></script>
+    <script src="./src/bootstrap-input-spinner.js"></script>
+    <script>
+        $("input[type='number']").inputSpinner()
+    </script>
 }

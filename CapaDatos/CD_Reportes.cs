@@ -68,37 +68,37 @@ namespace CapaDatos
 
 
 
-        public bool ModificarPrecioVenta(ReporteProducto oPromo)
-        {
-            bool respuesta = true;
-            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
-            {
-                try
-                {
-                    SqlCommand cmd = new SqlCommand("usp_ModificarPrecio", oConexion);
-                    cmd.Parameters.AddWithValue("IdProduct", oPromo.IdProducto);
-                    cmd.Parameters.AddWithValue("Precio", oPromo.PrecioVenta);
-                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+        //public bool ModificarPrecioVenta(ReporteProducto oPromo)
+        //{
+        //    bool respuesta = true;
+        //    using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
+        //    {
+        //        try
+        //        {
+        //            SqlCommand cmd = new SqlCommand("usp_ModificarPrecio", oConexion);
+        //            cmd.Parameters.AddWithValue("IdProduct", oPromo.IdProducto);
+        //            cmd.Parameters.AddWithValue("Precio", oPromo.PrecioVenta);
+        //            cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
 
-                    cmd.CommandType = CommandType.StoredProcedure;
+        //            cmd.CommandType = CommandType.StoredProcedure;
 
-                    oConexion.Open();
+        //            oConexion.Open();
 
-                    cmd.ExecuteNonQuery();
+        //            cmd.ExecuteNonQuery();
 
-                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+        //            respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
 
-                }
-                catch (Exception)
-                {
-                    respuesta = false;
-                }
+        //        }
+        //        catch (Exception)
+        //        {
+        //            respuesta = false;
+        //        }
 
-            }
+        //    }
 
-            return respuesta;
+        //    return respuesta;
 
-        }
+        //}
 
 
 
@@ -293,6 +293,49 @@ namespace CapaDatos
 
         }
 
+        public List<RetornarVentas> Retornar()
+        {
+            List<RetornarVentas> lista = new List<RetornarVentas>();
+
+
+            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
+            {
+                SqlCommand cmd = new SqlCommand("SP_RetornarVentas", oConexion);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                var F = moment("");
+
+                try
+                {
+                    oConexion.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new RetornarVentas()
+                            {
+                             
+                            Fecha = dr["Dia"].ToString(),
+                         
+                                Cantidad = dr["CantidadTotal"].ToString(),
+                      
+                            });
+                        }
+
+                    }
+
+                }
+                catch (Exception)
+                {
+                    lista = new List<RetornarVentas>();
+                }
+            }
+
+            return lista;
+
+        }
+
         public List<Grafica> ReporteGrafica()
         {
             List<Grafica> lista = new List<Grafica>();
@@ -334,7 +377,45 @@ namespace CapaDatos
         }
 
 
+        public List<GraficaPastel> ReporteGraficaPastel()
+        {
+            List<GraficaPastel> lista = new List<GraficaPastel>();
 
+
+            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
+            {
+                SqlCommand cmd = new SqlCommand("SP_RetornarProductos", oConexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                try
+                {
+                    oConexion.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new GraficaPastel()
+                            {
+                                producto = dr["producto"].ToString(),
+                                cantidad = dr["cantidad"].ToString(),
+                               
+
+                            });
+                        }
+
+                    }
+
+                }
+                catch (Exception)
+                {
+                    lista = new List<GraficaPastel>();
+                }
+            }
+
+            return lista;
+
+        }
 
 
 
