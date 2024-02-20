@@ -303,7 +303,7 @@ namespace CapaDatos
                 SqlCommand cmd = new SqlCommand("SP_RetornarVentas", oConexion);
 
                 cmd.CommandType = CommandType.StoredProcedure;
-                var F = moment("");
+          
 
                 try
                 {
@@ -374,6 +374,75 @@ namespace CapaDatos
 
             return lista;
 
+        }
+
+        //public List<Bcapacidad> Capacidad()
+        //{
+        //    List<Bcapacidad> lista = new List<Bcapacidad>();
+        //    using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
+        //    {
+        //        SqlCommand cmd = new SqlCommand("usp_CantidadBodegas", oConexion);
+        //        cmd.CommandType = CommandType.StoredProcedure;
+        //        try
+        //        {
+        //            oConexion.Open();
+        //            using (SqlDataReader dr = cmd.ExecuteReader())
+        //            {
+        //                while (dr.Read())
+        //                {
+        //                    lista.Add(new Bcapacidad()
+        //                    {
+        //                        Bodega = dr["Bodega"].ToString(),
+        //                        Capacidad = dr["Capacidad"].ToString(),
+        //                        Total = dr["Total"].ToString(),
+        //                    });
+        //                }
+        //            }
+        //        }
+        //        catch(Exception)
+        //        {
+        //            lista = new List<Bcapacidad>();
+        //        }
+        //    }
+        //    return lista;
+
+        //}
+
+
+        public List<Bcapacidad> Capacidad()
+        {
+            List<Bcapacidad> lista = new List<Bcapacidad>();
+            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
+            {
+                SqlCommand cmd = new SqlCommand("usp_CantidadBodegas", oConexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                try
+                {
+                    oConexion.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        lista.Add(new Bcapacidad()
+                        {
+                            Bodega = dr["Bodega"].ToString(),
+                            Capacidad = Convert.ToInt32(dr["Capacidad"].ToString()),
+                            Total = Convert.ToInt32(dr["Total"].ToString()),
+
+                        });
+                    }
+                    dr.Close();
+
+                    return lista;
+
+                }
+                catch (Exception)
+                {
+                    lista = null;
+                    return lista;
+                }
+            }
         }
 
 

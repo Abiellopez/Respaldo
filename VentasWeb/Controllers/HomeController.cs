@@ -46,10 +46,18 @@ namespace VentasWeb.Controllers
             return Json(Lista, JsonRequestBehavior.AllowGet);
 
         }
- 
+
+        public JsonResult Capacidad()
+        {
+            List<Bcapacidad> Lista = CD_Reportes.Instancia.Capacidad();
+            return Json(new { data = Lista }, JsonRequestBehavior.AllowGet);
+  
+
+        }
+
         //public JsonResult Grafica()
         //{
-          
+
         //    List<Grafica> lista = CD_Reportes.Instancia.ReporteGrafica();
         //    return Json(lista, JsonRequestBehavior.AllowGet);
         //}

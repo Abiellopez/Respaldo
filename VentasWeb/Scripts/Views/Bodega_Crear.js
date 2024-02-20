@@ -7,11 +7,13 @@ $(document).ready(function () {
     ////validamos el formulario
     $("#form").validate({
         rules: {
-            Nombre : "required",
+            Nombre: "required",
+            Capacidad: "required",
         },
         messages: {
 
-            Nombre: "(*)"
+            Nombre: "(*)",
+            Capacidad: "(*)"
 
         },
         errorElement: 'span'
@@ -27,6 +29,7 @@ $(document).ready(function () {
         "columns": [
 
             { "data": "Nombre", "width": "20%" },
+            { "data": "Capacidad", "width": "20%" },
             {
                 "data": "Activo", "render": function (data) {
                     if (data) {
@@ -65,10 +68,12 @@ function abrirPopUpForm(json) {
 
         $("#txtid").val(json.IdBodega);
         $("#txtNombre").val(json.Nombre);
+        $("#txtCapacidad").val(json.Capacidad);
         $("#cboEstado").val(json.Activo == true ? 1 : 0);
 
     } else {
         $("#txtNombre").val("");
+        $("#txtCapacidad").val("");
         $("#cboEstado").val(1);
     }
 
@@ -85,6 +90,7 @@ function Guardar() {
             objeto: {
                 IdBodega: parseInt($("#txtid").val()),
                 Nombre: $("#txtNombre").val(),
+                Capacidad: parseInt($("#txtCapacidad").val()),
                 Activo: ($("#cboEstado").val() == "1" ? true : false)
             }
         }

@@ -113,8 +113,8 @@ function resumen() {
             /*   const año = dataJson.map((item) => { return item.FechaVenta })*/
             const values = dataJson.map((item) => { return item.Cantidad })
 
-            console.log(labels)
-            console.log(values)
+            //console.log(labels)
+            //console.log(values)
             /* console.log(año)*/
 
 
@@ -148,6 +148,37 @@ function resumen() {
 
         })
 }
+
+
+var tabladata;
+$(document).ready(function () {
+
+    tabladata = $('#tbdata').DataTable({
+        dom: '',
+        "ajax": {
+            "url": $.MisUrls.url._Capacidad, 
+            "type": "GET",
+            "datatype": "json",
+           
+
+        },
+      
+        "columns": [
+            { "data": "Bodega" },
+            { "data": "Capacidad" },
+            { "data": "Total" }
+        
+
+        ],
+    
+        "language": {
+            "url": $.MisUrls.url.Url_datatable_spanish
+        },
+        responsive: true
+    });
+
+  
+})
 
     $(document).ready(() => {
      /*   Grafica()*/

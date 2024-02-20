@@ -12,6 +12,7 @@ namespace CapaModelo
         public int IdBodega { get; set; }
         public string Nombre { get; set; }
 
+        public int Capacidad { get; set; }
         public bool Activo { get; set; }
         public DateTime FechaRegistro { get; set; }
     }

@@ -49,6 +49,7 @@ namespace CapaDatos
                         {
                             IdBodega = Convert.ToInt32(dr["IdBodega"].ToString()),
                             Nombre = dr["Nombre"].ToString(),
+                            Capacidad = Convert.ToInt32(dr["espacio"].ToString()),
                             Activo = Convert.ToBoolean(dr["Activo"].ToString())
 
                         });
@@ -75,6 +76,7 @@ namespace CapaDatos
                 {
                     SqlCommand cmd = new SqlCommand("usp_RegistrarTienda", oConexion);
                     cmd.Parameters.AddWithValue("Nombre", oTienda.Nombre);
+                    cmd.Parameters.AddWithValue("Capacidad", oTienda.Capacidad);
                     cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
 
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -108,6 +110,7 @@ namespace CapaDatos
                     SqlCommand cmd = new SqlCommand("usp_ModificarTienda", oConexion);
                     cmd.Parameters.AddWithValue("IdBodega", oTienda.IdBodega);
                     cmd.Parameters.AddWithValue("Nombre", oTienda.Nombre);
+                    cmd.Parameters.AddWithValue("Capacidad", oTienda.Capacidad);
                     cmd.Parameters.AddWithValue("Activo", oTienda.Activo);
                     cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
 
