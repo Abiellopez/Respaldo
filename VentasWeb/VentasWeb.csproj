@@ -1851,6 +1851,7 @@
     <Content Include="Imagenes\fondo.png" />
     <Content Include="Imagenes\transaccion.png" />
     <Content Include="Imagenes\zapat.jpg" />
+    <Content Include="Respaldos sql\RespaldoGraduacion.sql" />
     <Content Include="Respaldos sql\script.sql" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />

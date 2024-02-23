@@ -254,7 +254,7 @@ function RegistrarDev() {
                  
                 } else {
 
-                    swal("Mensaje", "No se pudo guardar los cambios", "warning")
+                    swal("Mensaje", "No se logro encontrar la factura", "warning")
                 }
             },
             error: function (error) {
