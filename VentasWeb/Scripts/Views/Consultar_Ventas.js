@@ -70,15 +70,8 @@ $(document).ready(function () {
                         return '<span class="badge badge-danger">Factura anulada</span>'
                     }
                 }
-            },
-            {
-                "data": "IdVenta", "render": function (data, type, row, meta) {
-                    return "<button class='btn btn-primary btn-sm' type='button' onclick='abrirPopUpForm(" + JSON.stringify(row) + ")'><i class='fas fa-undo-alt'></i></button>" 
-                },
-                "orderable": false,
-                "searchable": false,
-                "width": "90px"
             }
+
         ],
         "language": {
             "url": $.MisUrls.url.Url_datatable_spanish
