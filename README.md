@@ -36,11 +36,7 @@ admin
 
 ## Arquitectura
 
-El proyecto sigue una arquitectura de MVC, donde el frontend está construido con html y css y el backend está desarrollado con el lenguaje C#. La base de datos utilizada es en sql para almacenar información requerida por el sistema.
-
-## Créditos
-
-Este proyecto fue creado por Abiel Urai Lopez Sanchez, Alvaro fabian Espinoza Garcia, Moises David Aguirre Lopez y nuestro tutor Alvaro Mejia Quiroz. Agradecemos a todos los que han contribuido con ideas y sugerencias para mejorar el proyecto.
+El proyecto sigue una arquitectura de MVC, donde el frontend está construido con html y css y el backend está desarrollado con el lenguaje C#. La base de datos utilizada es en sql para almacenar información requerida 
 
 
 ## Contacto
